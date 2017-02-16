@@ -119,6 +119,7 @@ Global const $CHECK_SCREEN_SKIP = [[85.6], [97.5], [0x000000]]
 Global const $CHECK_SCREEN_PVP_START = [[41.4], [12.6], [0xD00101, 0xA51B06]]	; red
 Global const $CHECK_SCREEN_PVP_FINISH = [[72.0], [91.2], [0x224872, 0x1B406B, 0x6A401A]]	; blue
 Global const $CHECK_SCREEN_PVP_USE_RED_DIA = [[53.5], [72.4], [0x224872, 0x1B406B, 0x6A401A]]	; blue
+Global const $CHECK_SCREEN_PVP_NO_COUNT = [[87.1], [38.7], [0x27201E]]	; darkgrey
 Global const $CHECK_SCREEN_ALERT_INFO = [[45.5], [70.5], [0x224872, 0x1B406B, 0x6A401A]]	; blue
 Global const $CHECK_SCREEN_ALERT_LOW_POWER = [[53.5], [75.5], [0x224872, 0x1B406B, 0x6A401A]]	; blue
 Global const $CHECK_SCREEN_PORTALALERT = [[53.5], [75.5], [0x224872, 0x1B406B, 0x6A401A]]	; blue
