@@ -56,8 +56,9 @@ Func DoScrollQuest()
 		 SetLog("Go!", $COLOR_DARKGREY)
 	  EndIf
 
-
 	  While $RunState
+		 $WinRect = WinGetPos( $HWnD )
+
 		  ; Click any skip button!
 		 ClickControlPos($POS_SKIP_BUTTON)
 

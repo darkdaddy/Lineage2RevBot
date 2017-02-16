@@ -69,10 +69,17 @@ Global const $POS_TOPMENU_MENU = [71.6, 17.5]
 Global const $POS_TOPMENU_BAG = [76.7, 17.5]
 
 Global const $POS_MENU_DUNGEON = [19.1, 95.2]
+Global const $POS_MENU_BATTLE = [31.5, 95.2]
+
 Global const $POS_DUNGEON_ADENA = [65.6, 61.6]
 Global const $POS_DUNGEON_EXP = [85.9, 61.6]
-
 Global const $POS_DUNGEON_ENTER_BUTTON = [81.2, 91.3]
+
+Global const $POS_BATTLE_PVP = [29.0, 50.0]
+
+Global const $POS_BATTLE_PVP_REWARD = [40.7, 28.9]
+Global const $POS_BATTLE_PVP_REFRESH = [91.3, 25.9]
+Global const $POS_BATTLE_PVP_LIST_ITEM1 = [91.3, 39.0]
 
 Global const $POS_DIFFICULTY_EASY = [25.3, 37.0]
 Global const $POS_DIFFICULTY_NORMAL = [25.3, 51.0]
@@ -92,6 +99,9 @@ Global const $POS_SCROLL_QUEST_END_BUTTON = [44.0, 88.0]
 
 Global const $POS_ALERT_QUESTION_OK_BUTTON = [56.8, 73.5]
 Global const $POS_ALERT_INFO_OK_BUTTON = [46.5, 70.5]
+Global const $POS_ALERT_ALERT_LOW_POWER_OK_BUTTON = [53.5, 75.5]
+Global const $POS_ALERT_ALERT_PVP_USE_RED_DIA_OK_BUTTON = [53.5, 72.4]
+Global const $POS_ALERT_ALERT_PVP_USE_RED_DIA_CANCEL_BUTTON = [37.2, 72.4]
 Global const $POS_SKIP_BUTTON = [91.1, 74.8]
 
 Global const $POS_AUTO_BATTLE_BUTTON = [66.9, 92.8]
@@ -100,9 +110,16 @@ Global const $POS_BATTLE_RARE2_BUTTON = [94.9, 68.7]
 Global const $POS_BATTLE_SKILL1_BUTTON = [81.6, 71.2]
 Global const $POS_BATTLE_SKILL2_BUTTON = [79.4, 82.0]
 Global const $POS_BATTLE_SKILL3_BUTTON = [80.4, 92.5]
+Global const $POS_BATTLE_ATTACK_BUTTON = [90.1, 83.4]
+
+Global const $POS_PVP_FINISH_BUTTON = [72.0, 91.2]
 
 ; ---------- Screen Check ------------
 Global const $CHECK_SCREEN_SKIP = [[85.6], [97.5], [0x000000]]
-Global const $CHECK_SCREEN_ALERT_INFO = [[45.5], [70.5], [0x224872, 0x1B406B, 0x6A401A]]
-Global const $CHECK_SCREEN_PORTALALERT = [[53.5], [75.5], [0x224872, 0x1B406B, 0x6A401A]]
-Global const $CHECK_SCREEN_SCROLLQUEST_END = [[44.0], [88.0], [0x224872, 0x6A401A]]
+Global const $CHECK_SCREEN_PVP_START = [[41.4], [12.6], [0xD00101, 0xA51B06]]	; red
+Global const $CHECK_SCREEN_PVP_FINISH = [[72.0], [91.2], [0x224872, 0x1B406B, 0x6A401A]]	; blue
+Global const $CHECK_SCREEN_PVP_USE_RED_DIA = [[53.5], [72.4], [0x224872, 0x1B406B, 0x6A401A]]	; blue
+Global const $CHECK_SCREEN_ALERT_INFO = [[45.5], [70.5], [0x224872, 0x1B406B, 0x6A401A]]	; blue
+Global const $CHECK_SCREEN_ALERT_LOW_POWER = [[53.5], [75.5], [0x224872, 0x1B406B, 0x6A401A]]	; blue
+Global const $CHECK_SCREEN_PORTALALERT = [[53.5], [75.5], [0x224872, 0x1B406B, 0x6A401A]]	; blue
+Global const $CHECK_SCREEN_SCROLLQUEST_END = [[44.0], [88.0], [0x224872, 0x1B406B, 0x6A401A]]	; blue

@@ -9,5 +9,9 @@ Func AutoFlow()
 	  DoAdenaDungeon()
    EndIf
 
+   If $setting_enabled_pvp Then
+	  DoPvPBattle()
+   EndIf
+
    Return True
 EndFunc

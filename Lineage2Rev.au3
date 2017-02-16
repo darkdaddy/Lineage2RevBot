@@ -26,6 +26,7 @@ EndIf
 #include <Bots/AutoFlow.au3>
 #include <Bots/ScrollQuest.au3>
 #include <Bots/AdenaDungeon.au3>
+#include <Bots/PvPBattle.au3>
 #include <Bots/Form/MainView.au3>
 #include-once
 
@@ -36,8 +37,8 @@ Opt("GUIOnEventMode", 1)
 Opt("TrayIconHide", 1)
 
 GUISetOnEvent($GUI_EVENT_CLOSE, "mainViewClose", $mainView)
-;GUIRegisterMsg($WM_COMMAND, "GUIControl")
-;GUIRegisterMsg($WM_SYSCOMMAND, "GUIControl")
+GUIRegisterMsg($WM_COMMAND, "GUIControl")
+GUIRegisterMsg($WM_SYSCOMMAND, "GUIControl")
 
 ; Initialize
 DirCreate($dirLogs)
@@ -80,7 +81,6 @@ EndFunc
 While 1
    Sleep(10)
 WEnd
-
 
 Func runBot()
    _log("START" )
@@ -157,7 +157,6 @@ Func GUIControl($hWind, $iMsg, $wParam, $lParam)
 			   btnStop()
 			EndSwitch
 		Case 274
-
 			Switch $wParam
 			   Case 0xf060
 				  mainViewClose()
@@ -198,11 +197,10 @@ Func ClickBagItem($pos, $clickCount = 1, $delayMsec = 300)
 
 EndFunc
 
-Func CheckForPixel($screenInfo)
+Func CheckForPixel($screenInfo, $PixelTolerance = 7)
    Local $posInfo = [$screenInfo[0][0], $screenInfo[1][0]]
    Local $p = ControlPos($posInfo)
    Local Const $RegionSize = 3
-   Local Const $PixelTolerance = 7
    $x = $WinRect[0] + $p[0]
    $y = $WinRect[1] + $p[1]
 
@@ -250,7 +248,42 @@ Func CheckAlertInfoScreen()
    return CheckForPixel($CHECK_SCREEN_ALERT_INFO)
 EndFunc
 
+Func CheckAlertLowPowerScreen()
+   return CheckForPixel($CHECK_SCREEN_ALERT_LOW_POWER)
+EndFunc
+
 Func CheckScrollQuestEndScreen()
    return CheckForPixel($CHECK_SCREEN_SCROLLQUEST_END)
+EndFunc
+
+Func ActionAttck($screenInfo, $maxSkill = 4)
+
+   Local Const $CastDelay = 300
+   Local $skill = 0
+
+   While $RunState
+	  If CheckForPixel($screenInfo) Then
+		 Return False
+	  Else
+		 ClickControlPos($POS_BATTLE_ATTACK_BUTTON)
+		 Switch $skill
+			Case 0
+			   ClickControlPos($POS_BATTLE_RARE1_BUTTON)
+			Case 1
+			   ClickControlPos($POS_BATTLE_RARE2_BUTTON)
+			Case 2
+			   ClickControlPos($POS_BATTLE_SKILL1_BUTTON)
+			Case 3
+			   ClickControlPos($POS_BATTLE_SKILL2_BUTTON)
+			Case 4
+			   ClickControlPos($POS_BATTLE_SKILL3_BUTTON)
+		 EndSwitch
+		 $skill = $skill + 1
+		 If $skill > $maxSkill Then
+			$skill = 0
+		 EndIf
+	  EndIf
+   WEnd
+   Return True
 EndFunc
 

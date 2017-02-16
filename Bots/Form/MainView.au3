@@ -95,7 +95,7 @@ $x += $gap
 ;==================================
 
 GUICtrlSetOnEvent($btnStart, "btnStart")
-;GUICtrlSetOnEvent($btnStop, "btnStop")	; already handled in GUIControl
+GUICtrlSetOnEvent($btnStop, "btnStop")	; already handled in GUIControl
 GUICtrlSetOnEvent($idTab, "tabChanged")
 
 GUICtrlSetState($btnStart, $GUI_SHOW)
@@ -145,6 +145,7 @@ Func btnStop()
    If $RunState = False Then
 	  Return
    EndIf
+
    _log("STOP BUTTON CLICKED" )
 
    GUICtrlSetState($btnStart, $GUI_SHOW)
