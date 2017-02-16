@@ -27,7 +27,7 @@ Global Const $64Bit = StringInStr(@OSArch, "64") > 0
 Global $WinRect = [0, 0, 0, 0]
 Global $WindowClass = "[Qt5QWindowIcon]"
 Global $Title
-Global $TitleCandidates = "Nox";|녹스 안드로이드 앱플레이어" ; '|' spilit
+Global $TitleCandidates = "[CLASS:Qt5QWindowIcon; INSTANCE:5]|녹스 안드로이드 앱플레이어|Nox" ; '|' spilit
 
 Global $HWnD = WinGetHandle($Title) ;Handle for Bluestacks window
 
@@ -120,7 +120,7 @@ Global const $CHECK_SCREEN_PVP_START = [[41.4], [12.6], [0xD00101, 0xA51B06]]	; 
 Global const $CHECK_SCREEN_PVP_FINISH = [[72.0], [91.2], [0x224872, 0x1B406B, 0x6A401A]]	; blue
 Global const $CHECK_SCREEN_PVP_USE_RED_DIA = [[53.5], [72.4], [0x224872, 0x1B406B, 0x6A401A]]	; blue
 Global const $CHECK_SCREEN_PVP_NO_COUNT = [[87.1], [38.7], [0x27201E]]	; darkgrey
-Global const $CHECK_SCREEN_ALERT_INFO = [[45.5], [70.5], [0x224872, 0x1B406B, 0x6A401A]]	; blue
+Global const $CHECK_SCREEN_ALERT_INFO = [[45.5], [71.5], [0x224872, 0x1B406B, 0x6A401A]]	; blue
 Global const $CHECK_SCREEN_ALERT_LOW_POWER = [[53.5], [75.5], [0x224872, 0x1B406B, 0x6A401A]]	; blue
 Global const $CHECK_SCREEN_PORTALALERT = [[53.5], [75.5], [0x224872, 0x1B406B, 0x6A401A]]	; blue
 Global const $CHECK_SCREEN_SCROLLQUEST_END = [[44.0], [88.0], [0x224872, 0x1B406B, 0x6A401A]]	; blue

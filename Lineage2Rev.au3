@@ -50,21 +50,28 @@ loadConfig()
 applyConfig()
 
 Func findWindow()
-   _log("findWindow called")
+   Local Const $MinWinSize = 200
+
    Local $found = False
    Local $arr = StringSplit($TitleCandidates, "|")
-   For $i = 0 To UBound($arr) - 1
+   For $i = 1 To UBound($arr)
 	  $WinRect = WinGetPos($arr[$i])
-
 	  If Not @error Then
 		 $winList = WinList($arr[$i])
 		 $count = $winList[0][0]
-		 For $w = 0 To $count - 1
+		 For $w = 1 To $count
+
 			$WinRect = WinGetPos( $winList[$w][1] )
-			If $WinRect[2] * $WinRect[3] > (100 * 100) Then
-			   $Title = $winList[$w][0]
-			   $HWnD = $winList[$w][1]
-			   $found = True
+			If Not @error Then
+			   If $WinRect[2] > $MinWinSize AND $WinRect[3] > $MinWinSize Then
+				  $Title = $winList[$w][0]
+				  $HWnD = $winList[$w][1]
+				  $found = True
+			   EndIf
+			EndIf
+
+			If $found Then
+			   ExitLoop
 			EndIf
 		 Next
 
