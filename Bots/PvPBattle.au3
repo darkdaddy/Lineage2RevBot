@@ -64,7 +64,7 @@ Func DoPvPBattle()
 			SetLog("Battle Completed", $COLOR_PINK)
 			ClickControlPos($POS_PVP_FINISH_BUTTON)
 
-			If _Sleep(3000) Then Return False
+			If _Sleep(4000) Then Return False
 			ExitLoop
 		 EndIf
 
@@ -72,7 +72,7 @@ Func DoPvPBattle()
 			SetLog("Battle Completed", $COLOR_PINK)
 			ClickControlPos($POS_PVP_FINISH_BUTTON)
 
-			If _Sleep(3000) Then Return False
+			If _Sleep(4000) Then Return False
 
 			ExitLoop
 		 EndIf

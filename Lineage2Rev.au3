@@ -197,7 +197,7 @@ Func ClickBagItem($pos, $clickCount = 1, $delayMsec = 300)
 
 EndFunc
 
-Func CheckForPixel($screenInfo, $PixelTolerance = 7)
+Func CheckForPixel($screenInfo, $PixelTolerance = 12)
    Local $posInfo = [$screenInfo[0][0], $screenInfo[1][0]]
    Local $p = ControlPos($posInfo)
    Local Const $RegionSize = 3
@@ -262,7 +262,7 @@ Func ActionAttck($screenInfo, $maxSkill = 4)
    Local $skill = 0
 
    While $RunState
-	  If CheckForPixel($screenInfo) Then
+	  If CheckForPixel($screenInfo, 10) Then
 		 Return False
 	  Else
 		 ClickControlPos($POS_BATTLE_ATTACK_BUTTON)
