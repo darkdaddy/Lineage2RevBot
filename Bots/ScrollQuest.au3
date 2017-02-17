@@ -25,8 +25,8 @@ Func DoScrollQuest()
 	  SetLog("Open Bag", $COLOR_DARKGREY)
 	  ClickControlPos($POS_TOPMENU_BAG)
 
+	   If _Sleep(2000) Then ExitLoop
 	  SetLog("Checking Advertising", $COLOR_DARKGREY)
-	  If _Sleep(1200) Then ExitLoop
 	  CloseAdvertisingScreen()
 
 	  SetLog("Open Misc Tab", $COLOR_DARKGREY)

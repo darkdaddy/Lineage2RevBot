@@ -176,6 +176,8 @@ Func btnStart()
 	  btnStop()
    EndIf
 
+   UpdateWindowRect()
+
    saveConfig()
 
    runBot()
