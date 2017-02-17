@@ -55,18 +55,19 @@ Func findWindow()
    Local $arr = StringSplit($setting_win_title, "|")
 
    For $i = 1 To $arr[0]
-	  $WinRect = WinGetPos($arr[$i])
+	  $rect = WinGetPos($arr[$i])
 	  If Not @error Then
 		 $winList = WinList($arr[$i])
 		 $count = $winList[0][0]
 		 For $w = 1 To $count
 
-			$WinRect = WinGetPos( $winList[$w][1] )
+			$rect = WinGetPos( $winList[$w][1] )
 			If Not @error Then
-			   If $WinRect[2] > $MinWinSize AND $WinRect[3] > $MinWinSize Then
+			   If $rect[2] > $MinWinSize AND $rect[3] > $MinWinSize Then
 				  $Title = $winList[$w][0]
 				  $HWnD = $winList[$w][1]
 				  $found = True
+				  UpdateWindowRect()
 			   EndIf
 			EndIf
 
@@ -181,7 +182,8 @@ Func UpdateWindowRect()
 		 $r[1] = $r[1] + $NoxTitleBarHeight
 		 $r[2] = $r[2] + ($ThickFrameSize * 2)
 		 $r[3] = $r[3] - $NoxTitleBarHeight - $ThickFrameSize
-		 $winRect = $r
+
+		 $WinRect = $r
 	  EndIf
    EndIf
 EndFunc
@@ -236,12 +238,9 @@ Func CheckForPixel($screenInfo, $PixelTolerance = 12)
 
    $okCount = 0
    For $p = 1 To UBound($posArr) - 1
-	  Local $xy = StringSplit($posArr[$p], $PosXYSplitter)
-	  Local $posInfo = [$xy[1], $xy[2]]
-
-	  Local $pos = ControlPos($posInfo)
-	  $x = $WinRect[0] + $pos[0]
-	  $y = $WinRect[1] + $pos[1]
+	  Local $pos = ControlPos($posArr[$p])
+	  $x = $WinRect[0] + $pos[0] - $ThickFrameSize
+	  $y = $WinRect[1] + $pos[1] - $NoxTitleBarHeight
 
 	  Local $found = False
 	  Local $colorArr = StringSplit($infoArr[2], ",")
@@ -311,10 +310,10 @@ Func CheckScrollQuestEndScreen()
 EndFunc
 
 Func CloseAdvertisingScreen()
-   If _Sleep(1000) Then Return
+   If _Sleep(500) Then Return
    If CheckForPixel($CHECK_SCREEN_ADVERTISING) Then
 	  SetLog("Close Advertising", $COLOR_BLUE)
-	  ClickControlPos($POS_ALERT_ALERT_ADVERTISING_CLOSE_BUTTON, 1, 800)
+	  ;ClickControlPos($POS_ALERT_ALERT_ADVERTISING_CLOSE_BUTTON, 1, 800)
 	  If _Sleep(500) Then Return
    EndIf
 EndFunc
