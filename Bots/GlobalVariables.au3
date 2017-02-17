@@ -103,7 +103,7 @@ Global const $POS_EXIT_RIGHT_BUTTON = "96.2:5.2"
 Global const $POS_SCROLL_QUEST_REQUEST_BUTTON = "87.8:92.9"
 Global const $POS_SCROLL_QUEST_START_BUTTON = "59.5:84.2"
 Global const $POS_SCROLL_QUEST_ALERT_WALK_BUTTON = "38.4:71.9"
-Global const $POS_SCROLL_QUEST_END_BUTTON = [44.0, 88.0]
+Global const $POS_SCROLL_QUEST_END_BUTTON = "50.3:84.9"
 
 Global const $POS_ALERT_QUESTION_OK_BUTTON = "58.6:68.3"
 Global const $POS_ALERT_INFO_OK_BUTTON = "49.9:65.7"	; single OK alert
@@ -124,13 +124,16 @@ Global const $POS_BATTLE_ATTACK_BUTTON = "89.5:82.7"
 Global const $POS_PVP_FINISH_BUTTON = "66.3:92.4"
 
 ; ---------- Screen Check ------------
+Global const $CHECK_SCREEN_ALERT_INFO = "45.5:71.5 | 0x224872,0x1B406B,0x6A401A"	; blue
+Global const $CHECK_SCREEN_PORTALALERT = "52.5:73 | 0x224872, 0x1B406B, 0x6A401A"	; blue
+Global const $CHECK_SCREEN_SCROLLQUEST_END = "42.8:85.8, 60.3:85.8 | 0x224872, 0x1B406B, 0x6A401A"	; blue
+
+; ###################################
+; Wrong value!!!!
 Global const $CHECK_SCREEN_SKIP = "85.6:97.5 | 0x000000"
 Global const $CHECK_SCREEN_PVP_START = "41.4:12.6 | 0xD00101,0xA51B06"	; red
 Global const $CHECK_SCREEN_PVP_FINISH = "72.0:91.2 | 0x224872,0x1B406B,0x6A401A"	; blue
 Global const $CHECK_SCREEN_PVP_USE_RED_DIA = "53.5:72.4 | 0x224872,0x1B406B,0x6A401A"	; blue
 Global const $CHECK_SCREEN_PVP_NO_COUNT = "87.1:38.7 | 0x27201E"	; darkgrey
-Global const $CHECK_SCREEN_ALERT_INFO = "45.5:71.5 | 0x224872,0x1B406B,0x6A401A"	; blue
 Global const $CHECK_SCREEN_ALERT_LOW_POWER = "53.5:75.5 | 0x224872, 0x1B406B, 0x6A401A"	; blue
-Global const $CHECK_SCREEN_PORTALALERT = "52.5:73 | 0x224872, 0x1B406B, 0x6A401A"	; blue
-Global const $CHECK_SCREEN_SCROLLQUEST_END = "44.0:88.0, 60.0:88.0 | 0x224872, 0x1B406B, 0x6A401A"	; blue
 Global const $CHECK_SCREEN_ADVERTISING = "85.8:30.1 | 0xA4A1A4 | 5"	; grey 'X'

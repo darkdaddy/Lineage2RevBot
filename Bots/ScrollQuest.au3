@@ -64,6 +64,7 @@ Func DoScrollQuest()
 	  EndIf
 
 	  While $RunState
+
 		 UpdateWindowRect()
 
 		  ; Click any skip button!
