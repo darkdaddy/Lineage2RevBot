@@ -8,6 +8,7 @@ Local $setting_common_group = "Default"
 Global $setting_win_title = "녹스 안드로이드 앱플레이어"
 
 Global $setting_item_pos_questscroll = 2
+Global $setting_pvp_use_red_dia = False
 Global $setting_delay_rate = 1.0
 Global $setting_difficulty_exp = 2
 Global $setting_difficulty_adena = 2
@@ -27,6 +28,8 @@ Func loadConfig()
    $setting_difficulty_adena = Int(IniRead($config, $setting_common_group, "difficulty_adena", "2"))
    $setting_delay_rate =  Number(IniRead($config, $setting_common_group, "delay_rate", "1.0"))
 
+   $setting_pvp_use_red_dia = IniRead($config, $setting_common_group, "enabled_pvp_use_red_dia", "False") == "True" ? True : False
+
    $setting_enabled_scrollquest = IniRead($config, $setting_common_group, "enabled_scrollquest", "False") == "True" ? True : False
    $setting_enabled_pvp = IniRead($config, $setting_common_group, "enabled_pvp", "False") == "True" ? True : False
    $setting_enabled_adena_dungeon = IniRead($config, $setting_common_group, "enabled_adena_dungeon", "False") == "True" ? True : False
@@ -42,6 +45,8 @@ Func applyConfig()
    _GUICtrlComboBox_SetCurSel($comboScrollPos, Int($setting_item_pos_questscroll) - 1)
    _GUICtrlComboBox_SetCurSel($comboExpDifficulty, Int($setting_difficulty_exp))
    _GUICtrlComboBox_SetCurSel($comboAdenaDifficulty, Int($setting_difficulty_adena))
+
+   GUICtrlSetState($checkPvpUseRedDiaEnabled, $setting_pvp_use_red_dia ? $GUI_CHECKED : $GUI_UNCHECKED)
 
    GUICtrlSetState($checkScrollQuestEnabled, $setting_enabled_scrollquest ? $GUI_CHECKED : $GUI_UNCHECKED)
    GUICtrlSetState($checkPvpEnabled, $setting_enabled_pvp ? $GUI_CHECKED : $GUI_UNCHECKED)
@@ -67,6 +72,8 @@ Func saveConfig()
    IniWrite($config, $setting_common_group, "enabled_daily_dungeon", _IsChecked($checkDailyDungeonEnabled))
    IniWrite($config, $setting_common_group, "enabled_exp_dungeon", _IsChecked($checkExpEnabled))
    IniWrite($config, $setting_common_group, "enabled_tower_dissipation", _IsChecked($checkTowerDissipationEnabled))
+
+   IniWrite($config, $setting_common_group, "enabled_pvp_use_red_dia", _IsChecked($checkPvpUseRedDiaEnabled))
 
 EndFunc	;==>saveConfig
 

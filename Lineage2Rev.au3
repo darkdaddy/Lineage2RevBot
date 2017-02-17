@@ -225,6 +225,13 @@ Func ClickBagItem($pos, $clickCount = 1, $delayMsec = 300)
 
 EndFunc
 
+Func GetPixelColor($x, $y)
+   $x = $WinRect[0] + $x - $ThickFrameSize
+   $y = $WinRect[1] + $y - $NoxTitleBarHeight
+   Local $c = PixelGetColor($x, $y)
+   Return $c
+EndFunc
+
 Func CheckForPixel($screenInfo, $PixelTolerance = 12)
 
    Local $infoArr = StringSplit($screenInfo, "|")

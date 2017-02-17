@@ -99,15 +99,20 @@ GUICtrlCreateTabItem("Option")
 $x = $contentPaneX
 $y = $contentPaneY
 
-; Pos Calc
+; Nox Title
 $Label_1 = GUICtrlCreateLabel("Nox Title", $x, $y + 5, 60, 20)
 $x += 60
 $inputNoxTitle = GUICtrlCreateInput("", $x, $y, 200, 20)
 
+; PVP Red Dia Use
+$x = $contentPaneX
+$y += 30
+$checkPvpUseRedDiaEnabled = GUICtrlCreateCheckbox("Use PVP Red Dia", $x, $y, $w, 25)
+
 $x = $contentPaneX
 $y += 50
 
-GUICtrlCreateGroup("Utility", 20, $y, 400, 80)
+GUICtrlCreateGroup("Utility", 20, $y, 410, 80)
 $x = $contentPaneX + 10
 $y += 20
 
@@ -122,7 +127,7 @@ $inputCalcPosY = GUICtrlCreateInput("", $x, $y, 30, 20)
 $x += 40
 $btnCalcPos = GUICtrlCreateButton("Calc", $x, $y, 40, 20)
 $x += 50
-$inputCalcResult = GUICtrlCreateInput("", $x, $y, 100, 20)
+$inputCalcResult = GUICtrlCreateInput("", $x, $y, 130, 20)
 
 
 ;==================================
@@ -209,13 +214,14 @@ Func btnCalcPos()
 
    findWindow()
 
-   $posX = Int(GUICtrlRead($inputCalcPosX))
-   $posY = Int(GUICtrlRead($inputCalcPosY))
+   $orgPosX = Int(GUICtrlRead($inputCalcPosX))
+   $orgPosY = Int(GUICtrlRead($inputCalcPosY))
 
-   $posX = $posX - $ThickFrameSize
-   $posY = $posY -  $NoxTitleBarHeight
+   $posX = $orgPosX - $ThickFrameSize
+   $posY = $orgPosY -  $NoxTitleBarHeight
 
-   $r = WinGetPos($HWnD)
+   $org = WinGetPos($HWnD)
+   $r = $org
    If Not @error Then
 
 	  $r[0] = $r[0] + $ThickFrameSize
@@ -227,7 +233,13 @@ Func btnCalcPos()
 	  $y = Round($posY * 100.0 / $r[3], 1)
 
 	  $result = $x & $PosXYSplitter & $y
-	  _log( "WinSize [" & $r[2] & "," & $r[3] & "] => (" & $posX & "," & $posY & ") => " & $result )
+
+	  ClipPut($result)
+
+	  $color = GetPixelColor($orgPosX, $orgPosY);
+	  $result = $result & " | " & "0x" & StringMid(Hex($color), 2)
+
+	  _log( "WinSize [" & $org[2] & "," & $org[3] & "] => (" & $orgPosX & "," & $orgPosY & ") => " & $result & ", color = " & Hex($color))
 
 	  GUICtrlSetData($inputCalcResult, $result)
    Else

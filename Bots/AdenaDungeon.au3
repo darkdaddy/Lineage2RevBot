@@ -21,23 +21,24 @@ Func DoAdenaDungeon()
    While $RunState
 #cs ----------------------------------------------------------------------------
 #ce ----------------------------------------------------------------------------
-
-	  ; TODO FINISH LOOP
-	  ;
+	  SetLog("LoopCount : " & $loopCount, $COLOR_GREEN)
 
 	  SetLog("Open Adena Dungeon", $COLOR_DARKGREY)
 	  If _Sleep(1500) Then Return False
 	  ClickControlPos($POS_DUNGEON_ADENA)
 
-	  SetLog("Select Difficulty : " & $setting_difficulty_adena, $COLOR_DARKGREY)
+	  ; TODO FINISH LOOP
+	  ;
 
+	  SetLog("Select Difficulty : " & $setting_difficulty_adena, $COLOR_DARKGREY)
+	  If _Sleep(1000) Then Return False
 	  Switch $setting_difficulty_adena
 		 Case 0
-			ClickControlPos($POS_DIFFICULTY_EASY, 2, 300)
+			ClickControlPos($POS_DUNGEON_DIFFICULTY_EASY, 2, 300)
 		 Case 1
-			ClickControlPos($POS_DIFFICULTY_NORMAL, 2, 300)
+			ClickControlPos($POS_DUNGEON_DIFFICULTY_NORMAL, 2, 300)
 		 Case 1
-			ClickControlPos($POS_DIFFICULTY_HARD, 2, 300)
+			ClickControlPos($POS_DUNGEON_DIFFICULTY_HARD, 2, 300)
 	  EndSwitch
 
 	  SetLog("Entering Dungeon..", $COLOR_DARKGREY)
@@ -58,10 +59,15 @@ Func DoAdenaDungeon()
 	  If _Sleep(3000) Then Return False
 	  While $RunState
 
-		 ; TODO CHECK FINISH
-		 ;
+		 If _Sleep(1500) Then Return False
 
-		 If ActionAttck() = False Then
+		 If ActionAttck($CHECK_SCREEN_ADENA_END) = False Then
+
+			SetLog("Adena Completed", $COLOR_PINK)
+			ClickControlPos($POS_COMMON_FINISH_BUTTON)
+
+			$loopCount = $loopCount + 1
+			If _Sleep(4000) Then Return False
 			ExitLoop
 		 EndIf
 	  WEnd
