@@ -90,7 +90,6 @@ WEnd
 
 Func runBot()
    _log("START" )
-
    $loopCount = 0
    Local $iSec, $iMin, $iHour
 
@@ -294,8 +293,16 @@ Func CheckAlertLowPowerScreen()
 EndFunc
 
 Func CheckScrollQuestEndScreen()
-
    return CheckForPixel($CHECK_SCREEN_SCROLLQUEST_END)
+EndFunc
+
+Func CloseAdvertisingScreen()
+   If _Sleep(1000) Then Return
+   If CheckForPixel($CHECK_SCREEN_ADVERTISING) Then
+	  SetLog("Close Advertising", $COLOR_BLUE)
+	  ClickControlPos($POS_ALERT_ALERT_ADVERTISING_CLOSE_BUTTON, 1, 800)
+	  If _Sleep(500) Then Return
+   EndIf
 EndFunc
 
 Func ActionAttck($screenInfo, $maxSkill = 4)

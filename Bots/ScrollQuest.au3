@@ -25,8 +25,15 @@ Func DoScrollQuest()
 	  SetLog("Open Bag", $COLOR_DARKGREY)
 	  ClickControlPos($POS_TOPMENU_BAG)
 
+	  SetLog("Checking Advertising", $COLOR_DARKGREY)
+	  If _Sleep(1200) Then ExitLoop
+	  CloseAdvertisingScreen()
+
 	  SetLog("Open Misc Tab", $COLOR_DARKGREY)
 	  ClickControlPos($POS_BAG_MISC_TAB, 3)
+
+	  ; One More Check
+	  CloseAdvertisingScreen()
 
 	  SetLog("Use Scroll", $COLOR_DARKGREY)
 	  ClickBagItem($setting_item_pos_questscroll)
