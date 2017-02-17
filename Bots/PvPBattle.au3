@@ -6,6 +6,7 @@ Func DoPvPBattle()
 
    SetLog("Open Menu", $COLOR_DARKGREY)
    ClickControlPos($POS_TOPMENU_MENU)
+   If _Sleep(500) Then Return False
 
    SetLog("Open Battle", $COLOR_DARKGREY)
    ClickControlPos($POS_MENU_BATTLE)
@@ -41,8 +42,11 @@ Func DoPvPBattle()
 	  If _Sleep(2000) Then Return False
 	  If CheckForPixel($CHECK_SCREEN_PVP_USE_RED_DIA) = True Then
 		 SetLog("Alert Need Red Dia", $COLOR_DARKGREY)
-		 ClickControlPos($POS_ALERT_ALERT_PVP_USE_RED_DIA_OK_BUTTON)
+		 ClickControlPos($POS_ALERT_ALERT_PVP_USE_RED_DIA_CANCEL_BUTTON)
 		 ;$POS_ALERT_ALERT_PVP_USE_RED_DIA_CANCEL_BUTTON
+
+		 ClickControlPos($POS_EXIT_RIGHT_BUTTON, 1, 1000)
+		 ExitLoop
 	  EndIf
 
 	  SetLog("Waiting to start battle..", $COLOR_DARKGREY)

@@ -24,11 +24,14 @@
 
 Global Const $64Bit = StringInStr(@OSArch, "64") > 0
 
+Global Const $NoxTitleBarHeight = 36
+Global Const $ThickFrameSize = 2
 Global Const $MinWinSize = 200
 Global $WinRect = [0, 0, 0, 0]
 Global $WindowClass = "[Qt5QWindowIcon]"
 Global $Title
-Global $TitleCandidates = "[CLASS:Qt5QWindowIcon; INSTANCE:5]|녹스 안드로이드 앱플레이어|Nox" ; '|' spilit
+
+Global $PosXYSplitter = ":"
 
 Global $HWnD = WinGetHandle($Title) ;Handle for Bluestacks window
 
@@ -66,40 +69,45 @@ Global Const $COLOR_DARKGREY = 0x555555
 
 
 ; ---------- Positions ------------
-Global const $POS_TOPMENU_MENU = [71.6, 17.5]
-Global const $POS_TOPMENU_BAG = [76.7, 17.5]
+Global const $POS_TOPMENU_MENU = "71.2:4.8"
+Global const $POS_TOPMENU_BAG = "76.1:4.5"
 
-Global const $POS_MENU_DUNGEON = [19.1, 95.2]
-Global const $POS_MENU_BATTLE = [31.5, 95.2]
+Global const $POS_MENU_DUNGEON = "18.3:91.5"
+Global const $POS_MENU_BATTLE = "30.8:91.5"
 
-Global const $POS_DUNGEON_ADENA = [65.6, 61.6]
-Global const $POS_DUNGEON_EXP = [85.9, 61.6]
-Global const $POS_DUNGEON_ENTER_BUTTON = [81.2, 91.3]
+Global const $POS_DUNGEON_ADENA = "64.9:56.3"
+Global const $POS_DUNGEON_EXP = "85.3:56.3"
+Global const $POS_DUNGEON_ENTER_BUTTON = "77.9:89.6"
 
-Global const $POS_BATTLE_PVP = [29.0, 50.0]
+Global const $POS_BATTLE_PVP = "28.2:54.8"
 
-Global const $POS_BATTLE_PVP_REWARD = [40.7, 28.9]
-Global const $POS_BATTLE_PVP_REFRESH = [91.3, 25.9]
-Global const $POS_BATTLE_PVP_LIST_ITEM1 = [91.3, 39.0]
+Global const $POS_BATTLE_PVP_REWARD = "40.5:22"
+Global const $POS_BATTLE_PVP_REFRESH = "90.7:17.3"
+Global const $POS_BATTLE_PVP_LIST_ITEM1 = "91.1:32.2"
 
-Global const $POS_DIFFICULTY_EASY = [25.3, 37.0]
-Global const $POS_DIFFICULTY_NORMAL = [25.3, 51.0]
-Global const $POS_DIFFICULTY_HARD = [25.3, 65.0]
+Global const $POS_DUNGEON_DIFFICULTY_EASY = "25.1:31"
+Global const $POS_DUNGEON_DIFFICULTY_NORMAL = "25.1:45.2"
+Global const $POS_DUNGEON_DIFFICULTY_HARD = "25.1:60.3"
 
-Global const $POS_BAG_MISC_TAB = [86.8, 25.0]
-Global const $POS_BAG_ITEM_LEFT = [52.4, 33.0]
-Global const $POS_BAG_ITEM_RIGHT = [97.8, 33.0]
+Global const $POS_DAILY_DUNGEON_DIFFICULTY_EASY = "15.5:36.9"
+Global const $POS_DAILY_DUNGEON_DIFFICULTY_NORMAL = "15.5:52.2"
+Global const $POS_DAILY_DUNGEON_DIFFICULTY_HARD = "15.5:67.4"
+Global const $POS_DAILY_DUNGEON_DIFFICULTY_VERYHARD = "15.5:83.7"
 
-Global const $POS_EXIT_RIGHT_BUTTON = [96.8, 16.4]
+Global const $POS_BAG_MISC_TAB = "85.8:17.3"
+Global const $POS_BAG_ITEM_LEFT = "51.4:25.3"
+Global const $POS_BAG_ITEM_RIGHT = "96.7:25.3"
 
-Global const $POS_SCROLL_QUEST_REQUEST_BUTTON = [83.4, 94.4]
+Global const $POS_EXIT_RIGHT_BUTTON = "96.2:5.2"
+
+Global const $POS_SCROLL_QUEST_REQUEST_BUTTON = "87.8:92.9"
 Global const $POS_SCROLL_QUEST_START_BUTTON = [54.6, 88.5]
 Global const $POS_SCROLL_QUEST_GUIDE_BUTTON = [9.5, 55.0]
 Global const $POS_SCROLL_QUEST_ALERT_WALK_BUTTON = [32.7, 77.0]
 Global const $POS_SCROLL_QUEST_END_BUTTON = [44.0, 88.0]
 
 Global const $POS_ALERT_QUESTION_OK_BUTTON = [56.8, 73.5]
-Global const $POS_ALERT_INFO_OK_BUTTON = [46.5, 70.5]
+Global const $POS_ALERT_INFO_OK_BUTTON = "49.9:65.7"	; single OK alert
 Global const $POS_ALERT_ALERT_LOW_POWER_OK_BUTTON = [53.5, 75.5]
 Global const $POS_ALERT_ALERT_PVP_USE_RED_DIA_OK_BUTTON = [53.5, 72.4]
 Global const $POS_ALERT_ALERT_PVP_USE_RED_DIA_CANCEL_BUTTON = [37.2, 72.4]
@@ -117,13 +125,13 @@ Global const $POS_BATTLE_ATTACK_BUTTON = [90.1, 83.4]
 Global const $POS_PVP_FINISH_BUTTON = [72.0, 91.2]
 
 ; ---------- Screen Check ------------
-Global const $CHECK_SCREEN_SKIP = "85.6x97.5 | 0x000000"
-Global const $CHECK_SCREEN_PVP_START = "41.4x12.6 | 0xD00101,0xA51B06"	; red
-Global const $CHECK_SCREEN_PVP_FINISH = "72.0x91.2 | 0x224872,0x1B406B,0x6A401A"	; blue
-Global const $CHECK_SCREEN_PVP_USE_RED_DIA = "53.5x72.4 | 0x224872,0x1B406B,0x6A401A"	; blue
-Global const $CHECK_SCREEN_PVP_NO_COUNT = "87.1x38.7 | 0x27201E"	; darkgrey
-Global const $CHECK_SCREEN_ALERT_INFO = "45.5x71.5 | 0x224872,0x1B406B,0x6A401A"	; blue
-Global const $CHECK_SCREEN_ALERT_LOW_POWER = "53.5x75.5 | 0x224872, 0x1B406B, 0x6A401A"	; blue
-Global const $CHECK_SCREEN_PORTALALERT = "53.5x75.5 | 0x224872, 0x1B406B, 0x6A401A"	; blue
-Global const $CHECK_SCREEN_SCROLLQUEST_END = "44.0x88.0, 60.0x88.0 | 0x224872, 0x1B406B, 0x6A401A"	; blue
-Global const $CHECK_SCREEN_ADVERTISING = "85.8x30.1 | 0xA4A1A4 | 5"	; grey 'X'
+Global const $CHECK_SCREEN_SKIP = "85.6:97.5 | 0x000000"
+Global const $CHECK_SCREEN_PVP_START = "41.4:12.6 | 0xD00101,0xA51B06"	; red
+Global const $CHECK_SCREEN_PVP_FINISH = "72.0:91.2 | 0x224872,0x1B406B,0x6A401A"	; blue
+Global const $CHECK_SCREEN_PVP_USE_RED_DIA = "53.5:72.4 | 0x224872,0x1B406B,0x6A401A"	; blue
+Global const $CHECK_SCREEN_PVP_NO_COUNT = "87.1:38.7 | 0x27201E"	; darkgrey
+Global const $CHECK_SCREEN_ALERT_INFO = "45.5:71.5 | 0x224872,0x1B406B,0x6A401A"	; blue
+Global const $CHECK_SCREEN_ALERT_LOW_POWER = "53.5:75.5 | 0x224872, 0x1B406B, 0x6A401A"	; blue
+Global const $CHECK_SCREEN_PORTALALERT = "53.5:75.5 | 0x224872, 0x1B406B, 0x6A401A"	; blue
+Global const $CHECK_SCREEN_SCROLLQUEST_END = "44.0:88.0, 60.0:88.0 | 0x224872, 0x1B406B, 0x6A401A"	; blue
+Global const $CHECK_SCREEN_ADVERTISING = "85.8:30.1 | 0xA4A1A4 | 5"	; grey 'X'

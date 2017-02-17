@@ -89,6 +89,41 @@ $x += $btnWidth
 $x += $gap
 ; TODO : add button
 
+;-----------------------------------------------------------
+; Tab : Option
+;-----------------------------------------------------------
+
+GUICtrlCreateTabItem("Option")
+
+; Battle Buff Items
+$x = $contentPaneX
+$y = $contentPaneY
+
+; Pos Calc
+$Label_1 = GUICtrlCreateLabel("Nox Title", $x, $y + 5, 60, 20)
+$x += 60
+$inputNoxTitle = GUICtrlCreateInput("", $x, $y, 200, 20)
+
+$x = $contentPaneX
+$y += 50
+
+GUICtrlCreateGroup("Utility", 20, $y, 400, 80)
+$x = $contentPaneX + 10
+$y += 20
+
+; Pos Calc
+$Label_1 = GUICtrlCreateLabel("PosCalc", $x, $y + 5, 50, 20)
+$x += 60
+$inputCalcPosX = GUICtrlCreateInput("", $x, $y, 30, 20)
+$x += 30
+GUICtrlCreateLabel($PosXYSplitter, $x, $y + 5, 10, 20)
+$x += 10
+$inputCalcPosY = GUICtrlCreateInput("", $x, $y, 30, 20)
+$x += 40
+$btnCalcPos = GUICtrlCreateButton("Calc", $x, $y, 40, 20)
+$x += 50
+$inputCalcResult = GUICtrlCreateInput("", $x, $y, 100, 20)
+
 
 ;==================================
 ; Control Initial setting
@@ -97,6 +132,7 @@ $x += $gap
 GUICtrlSetOnEvent($btnStart, "btnStart")
 GUICtrlSetOnEvent($btnStop, "btnStop")	; already handled in GUIControl
 GUICtrlSetOnEvent($idTab, "tabChanged")
+GUICtrlSetOnEvent($btnCalcPos, "btnCalcPos")
 
 GUICtrlSetState($btnStart, $GUI_SHOW)
 GUICtrlSetState($btnStop, $GUI_HIDE)
@@ -128,11 +164,16 @@ Func btnStart()
    GUICtrlSetState($btnStart, $GUI_HIDE)
    GUICtrlSetState($btnStop, $GUI_SHOW)
 
+   saveConfig()
+   loadConfig()
+   applyConfig()
+
    If findWindow() Then
 	  WinActivate($HWnD)
 	  SetLog("Rect : " & $WinRect[0] & "," & $WinRect[1] & " " & $WinRect[2] & "x" & $WinRect[3] , $COLOR_ORANGE)
    Else
 	  SetLog("Nox Not Found", $COLOR_RED)
+	  btnStop()
    EndIf
 
    saveConfig()
@@ -158,8 +199,45 @@ Func btnStop()
    SetLog("Bot has stopped", $COLOR_ORANGE)
 EndFunc
 
+Func btnCalcPos()
+
+   saveConfig()
+   loadConfig()
+   applyConfig()
+
+   findWindow()
+
+   $posX = Int(GUICtrlRead($inputCalcPosX))
+   $posY = Int(GUICtrlRead($inputCalcPosY))
+
+   $posX = $posX - $ThickFrameSize
+   $posY = $posY -  $NoxTitleBarHeight
+
+   $r = WinGetPos($HWnD)
+   If Not @error Then
+
+	  $r[0] = $r[0] + $ThickFrameSize
+	  $r[1] = $r[1] + $NoxTitleBarHeight
+	  $r[2] = $r[2] + ($ThickFrameSize * 2)
+	  $r[3] = $r[3] - $NoxTitleBarHeight - $ThickFrameSize
+
+	  $x = Round($posX * 100.0 / $r[2], 1)
+	  $y = Round($posY * 100.0 / $r[3], 1)
+
+	  $result = $x & $PosXYSplitter & $y
+	  _log( "WinSize [" & $r[2] & "," & $r[3] & "] => (" & $posX & "," & $posY & ") => " & $result )
+
+	  GUICtrlSetData($inputCalcResult, $result)
+   Else
+	  GUICtrlSetData($inputCalcResult, "Nox Not Found")
+   EndIf
+
+
+EndFunc
+
 ; System callback
 Func mainViewClose()
+
    saveConfig()
    _GDIPlus_Shutdown()
    _GUICtrlRichEdit_Destroy($txtLog)

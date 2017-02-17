@@ -52,8 +52,9 @@ applyConfig()
 Func findWindow()
 
    Local $found = False
-   Local $arr = StringSplit($TitleCandidates, "|")
-   For $i = 1 To UBound($arr)
+   Local $arr = StringSplit($setting_win_title, "|")
+
+   For $i = 1 To $arr[0]
 	  $WinRect = WinGetPos($arr[$i])
 	  If Not @error Then
 		 $winList = WinList($arr[$i])
@@ -159,19 +160,27 @@ Func GUIControl($hWind, $iMsg, $wParam, $lParam)
 			Case $btnStop
 			   btnStop()
 			EndSwitch
-		Case 274
-			Switch $wParam
-			   Case 0xf060
-				  mainViewClose()
-			EndSwitch
+	  Case 274
+		 Switch $wParam
+			Case 0xf060
+			   mainViewClose()
+		 EndSwitch
 	EndSwitch
 	Return $GUI_RUNDEFMSG
  EndFunc   ;==>GUIControl
+
+
+;------------------------------------------------------------------------------
+; Util Function
 
 Func UpdateWindowRect()
    $r = WinGetPos($HWnD)
    If Not @error Then
 	  If $r[2] > $MinWinSize AND $r[3] > $MinWinSize Then
+		 $r[0] = $r[0] + $ThickFrameSize
+		 $r[1] = $r[1] + $NoxTitleBarHeight
+		 $r[2] = $r[2] + ($ThickFrameSize * 2)
+		 $r[3] = $r[3] - $NoxTitleBarHeight - $ThickFrameSize
 		 $winRect = $r
 	  EndIf
    EndIf
@@ -179,8 +188,13 @@ EndFunc
 
 Func ControlPos($posInfo)
 
-   Local $x = $posInfo[0] * $WinRect[2] / 100
-   Local $y = $posInfo[1] * $WinRect[3] / 100
+   Local $xy = StringSplit($posInfo, $PosXYSplitter)
+
+   Local $x = Number($xy[1]) * $WinRect[2] / 100
+   Local $y = Number($xy[2]) * $WinRect[3] / 100
+
+   $x = $x + $ThickFrameSize
+   $y = $y + $NoxTitleBarHeight
    Local $pos = [$x, $y]
    return $pos
 EndFunc
@@ -222,7 +236,7 @@ Func CheckForPixel($screenInfo, $PixelTolerance = 12)
 
    $okCount = 0
    For $p = 1 To UBound($posArr) - 1
-	  Local $xy = StringSplit($posArr[$p], "x")
+	  Local $xy = StringSplit($posArr[$p], $PosXYSplitter)
 	  Local $posInfo = [$xy[1], $xy[2]]
 
 	  Local $pos = ControlPos($posInfo)
