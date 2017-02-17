@@ -24,6 +24,7 @@
 
 Global Const $64Bit = StringInStr(@OSArch, "64") > 0
 
+Global Const $MinWinSize = 200
 Global $WinRect = [0, 0, 0, 0]
 Global $WindowClass = "[Qt5QWindowIcon]"
 Global $Title
@@ -115,12 +116,12 @@ Global const $POS_BATTLE_ATTACK_BUTTON = [90.1, 83.4]
 Global const $POS_PVP_FINISH_BUTTON = [72.0, 91.2]
 
 ; ---------- Screen Check ------------
-Global const $CHECK_SCREEN_SKIP = [[85.6], [97.5], [0x000000]]
-Global const $CHECK_SCREEN_PVP_START = [[41.4], [12.6], [0xD00101, 0xA51B06]]	; red
-Global const $CHECK_SCREEN_PVP_FINISH = [[72.0], [91.2], [0x224872, 0x1B406B, 0x6A401A]]	; blue
-Global const $CHECK_SCREEN_PVP_USE_RED_DIA = [[53.5], [72.4], [0x224872, 0x1B406B, 0x6A401A]]	; blue
-Global const $CHECK_SCREEN_PVP_NO_COUNT = [[87.1], [38.7], [0x27201E]]	; darkgrey
-Global const $CHECK_SCREEN_ALERT_INFO = [[45.5], [71.5], [0x224872, 0x1B406B, 0x6A401A]]	; blue
-Global const $CHECK_SCREEN_ALERT_LOW_POWER = [[53.5], [75.5], [0x224872, 0x1B406B, 0x6A401A]]	; blue
-Global const $CHECK_SCREEN_PORTALALERT = [[53.5], [75.5], [0x224872, 0x1B406B, 0x6A401A]]	; blue
-Global const $CHECK_SCREEN_SCROLLQUEST_END = [[44.0], [88.0], [0x224872, 0x1B406B, 0x6A401A]]	; blue
+Global const $CHECK_SCREEN_SKIP = "85.6x97.5 | 0x000000"
+Global const $CHECK_SCREEN_PVP_START = "41.4x12.6 | 0xD00101,0xA51B06"	; red
+Global const $CHECK_SCREEN_PVP_FINISH = "72.0x91.2 | 0x224872,0x1B406B,0x6A401A"	; blue
+Global const $CHECK_SCREEN_PVP_USE_RED_DIA = "53.5x72.4 | 0x224872,0x1B406B,0x6A401A"	; blue
+Global const $CHECK_SCREEN_PVP_NO_COUNT = "87.1x38.7 | 0x27201E"	; darkgrey
+Global const $CHECK_SCREEN_ALERT_INFO = "45.5x71.5 | 0x224872,0x1B406B,0x6A401A"	; blue
+Global const $CHECK_SCREEN_ALERT_LOW_POWER = "53.5x75.5 | 0x224872, 0x1B406B, 0x6A401A"	; blue
+Global const $CHECK_SCREEN_PORTALALERT = "53.5x75.5 | 0x224872, 0x1B406B, 0x6A401A"	; blue
+Global const $CHECK_SCREEN_SCROLLQUEST_END = "44.0x88.0, 60.0x88.0 | 0x224872, 0x1B406B, 0x6A401A"	; blue

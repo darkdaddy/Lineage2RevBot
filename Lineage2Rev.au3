@@ -50,7 +50,6 @@ loadConfig()
 applyConfig()
 
 Func findWindow()
-   Local Const $MinWinSize = 200
 
    Local $found = False
    Local $arr = StringSplit($TitleCandidates, "|")
@@ -147,8 +146,6 @@ Func runBot()
    btnStop()
 EndFunc
 
-_log("Bye!")
-
 Func GUIControl($hWind, $iMsg, $wParam, $lParam)
 	Local $nNotifyCode = BitShift($wParam, 16)
 	Local $nID = BitAND($wParam, 0x0000FFFF)
@@ -171,6 +168,15 @@ Func GUIControl($hWind, $iMsg, $wParam, $lParam)
 	EndSwitch
 	Return $GUI_RUNDEFMSG
  EndFunc   ;==>GUIControl
+
+Func UpdateWindowRect()
+   $r = WinGetPos($HWnD)
+   If Not @error Then
+	  If $r[2] > $MinWinSize AND $r[3] > $MinWinSize Then
+		 $winRect = $r
+	  EndIf
+   EndIf
+EndFunc
 
 Func ControlPos($posInfo)
 
@@ -205,23 +211,51 @@ Func ClickBagItem($pos, $clickCount = 1, $delayMsec = 300)
 EndFunc
 
 Func CheckForPixel($screenInfo, $PixelTolerance = 12)
-   Local $posInfo = [$screenInfo[0][0], $screenInfo[1][0]]
-   Local $p = ControlPos($posInfo)
+
+   Local $infoArr = StringSplit($screenInfo, "|")
+   Local $posArr = StringSplit($infoArr[1], ",")
+
+   If UBound($infoArr) - 1 >= 3 Then
+	  $PixelTolerance = Number($infoArr[3])
+   EndIf
+
    Local Const $RegionSize = 3
-   $x = $WinRect[0] + $p[0]
-   $y = $WinRect[1] + $p[1]
 
-   For $i = 0 To UBound($screenInfo, 2) - 1
-	  Local $aCoord = PixelSearch($x, $y, $x+$RegionSize, $y+$RegionSize, $screenInfo[2][$i], $PixelTolerance)
+   $okCount = 0
+   For $p = 1 To UBound($posArr) - 1
+	  Local $xy = StringSplit($posArr[$p], "x")
+	  Local $posInfo = [$xy[1], $xy[2]]
 
-	  If Not @error Then
-		 _log("CheckForPixel : " & $p[0] & " x " & $p[1] & " => OK " & ($aCoord[0] - $WinRect[0]) & " x " & ($aCoord[1] - $WinRect[1]) & ", " & Hex($screenInfo[2][$i]));
-		 return True
+	  Local $pos = ControlPos($posInfo)
+	  $x = $WinRect[0] + $pos[0]
+	  $y = $WinRect[1] + $pos[1]
+
+	  Local $found = False
+	  Local $colorArr = StringSplit($infoArr[2], ",")
+	  Local $answerColor = PixelGetColor($x, $y)
+
+	  For $c = 1 To UBound($colorArr) - 1
+		 Local $color = StringStripWS($colorArr[$c], $STR_STRIPLEADING + $STR_STRIPTRAILING)
+		 Local $aCoord = PixelSearch($x, $y, $x+$RegionSize, $y+$RegionSize, $color, $PixelTolerance)
+		 If Not @error Then
+			_log("CheckForPixel : [" & $p & "] " & $pos[0] & " x " & $pos[1] & " => OK " & ($aCoord[0] - $WinRect[0]) & " x " & ($aCoord[1] - $WinRect[1]) & ", " & $color & " (" & Hex($answerColor) & ")");
+			$okCount = $okCount + 1
+			$found = True
+			ExitLoop
+		 EndIf
+	  Next
+
+	  If $found = False Then
+		 _log("CheckForPixel : " & $pos[0] & "(" & $x & ") x " & $pos[1] & "(" & $y & ") => FAIL (" & Hex($answerColor) & ")");
 	  EndIf
+
    Next
-   Local $iColor = PixelGetColor($x, $y)
-   _log("CheckForPixel : " & $p[0] & "(" & $x & ") x " & $p[1] & "(" & $y & ") => FAIL (" & Hex($iColor) & ")");
-   return False
+
+   If $okCount == UBound($posArr) - 1 Then
+	  Return True
+   EndIf
+
+   Return False
 EndFunc
 
 Func WaitForPixel($screenInfo)
@@ -260,6 +294,7 @@ Func CheckAlertLowPowerScreen()
 EndFunc
 
 Func CheckScrollQuestEndScreen()
+
    return CheckForPixel($CHECK_SCREEN_SCROLLQUEST_END)
 EndFunc
 
