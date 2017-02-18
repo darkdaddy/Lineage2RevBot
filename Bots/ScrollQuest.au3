@@ -40,9 +40,8 @@ Func DoScrollQuest()
 
 	  SetLog("Request Quest", $COLOR_DARKGREY)
 	  ClickControlPos($POS_SCROLL_QUEST_REQUEST_BUTTON, 1, 500)
-	  ClickControlPos($POS_ALERT_QUESTION_OK_BUTTON, 1, 1000)
 
-	  If _Sleep(700) Then ExitLoop
+	  If _Sleep(800) Then ExitLoop
 	  If CheckAlertInfoScreen() Then
 		 SetLog("No Try Count", $COLOR_DARKGREY)
 		 ClickControlPos($POS_ALERT_INFO_OK_BUTTON, 1, 1000)
@@ -50,6 +49,8 @@ Func DoScrollQuest()
 		 ClickControlPos($POS_EXIT_RIGHT_BUTTON, 1, 1000)
 		 ExitLoop
 	  EndIf
+
+	  ClickControlPos($POS_ALERT_QUESTION_OK_BUTTON, 1, 1000)
 
 	  SetLog("Start Quest", $COLOR_DARKGREY)
 	  ClickControlPos($POS_SCROLL_QUEST_START_BUTTON, 1, 1000)
@@ -68,11 +69,19 @@ Func DoScrollQuest()
 
 		 UpdateWindowRect()
 
-		  ; Click any skip button!
-		 ClickControlPos($POS_SKIP_BUTTON)
+		 If _IsChecked($checkScrollQuestManualAttackEnabled) = False Then
 
-		 ; To Walk Fast. It's just for mine, SilverRanger... :)
-		 ClickControlPos($POS_BATTLE_SKILL1_BUTTON, 2, 500)
+			; Click any skip button!
+			ClickControlPos($POS_SKIP_BUTTON)
+
+			; To Walk Fast. It's just for mine, SilverRanger... :)
+			ClickControlPos($POS_BATTLE_SKILL1_BUTTON, 2, 500)
+		 EndIf
+
+		 If CheckForPixel($CHECK_SCREEN_SKIP) = True Then
+			; Click any skip button!
+			ClickControlPos($POS_SKIP_BUTTON)
+		 EndIf
 
 		 If CheckScrollQuestEndScreen() Then
 			ClickControlPos($POS_SCROLL_QUEST_END_BUTTON)

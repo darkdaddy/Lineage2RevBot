@@ -136,6 +136,7 @@ Global const $CHECK_SCREEN_PVP_NO_COUNT = "86.1:33.2 | 0x01F2028 | 8"	; darkgrey
 Global const $CHECK_SCREEN_ADENA_NO_COUNT = "75:90.5 | 0x0393D43,0x3B4045 | 8"	; darkgrey
 Global const $CHECK_SCREEN_ALERT_LOW_POWER = "53.7:73.8 | 0x224872, 0x1B406B, 0x6A401A"	; blue
 Global const $CHECK_SCREEN_ADENA_END = "70:91.1 | 0x224872,0x1B406B,0x6A401A"	; blue
+Global const $CHECK_SCREEN_SKIP = "84.7:97.1, 88.7:97.1 | 0x0000000"	; black
 
 ; ###################################
 ; Wrong value!!!!

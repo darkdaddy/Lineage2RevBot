@@ -130,6 +130,10 @@ $x = $contentPaneX
 $y += 30
 $checkPvpUseRedDiaEnabled = GUICtrlCreateCheckbox("Use PVP Red Dia", $x, $y, $w, 25)
 
+; Scroll Quest
+$y += 30
+$checkScrollQuestManualAttackEnabled = GUICtrlCreateCheckbox("Scroll Quest Manual Attack", $x, $y, 180, 25)
+
 $x = $contentPaneX
 $y += 50
 
