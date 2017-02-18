@@ -12,23 +12,29 @@ Func DoAdenaDungeon()
    SetLog("Open Dungeon", $COLOR_DARKGREY)
    ClickControlPos($POS_MENU_DUNGEON)
 
-   SetLog("Scrolling pages", $COLOR_DARKGREY)
-   If _Sleep(800) Then Return False
-   ControlSend($HWnD, "", "",  "aaa")	;Press A A to scroll right
-   If _Sleep(800) Then Return False
-   ControlSend($HWnD, "", "",  "aaa")	;Press A A to scroll right
-
    While $RunState
 #cs ----------------------------------------------------------------------------
 #ce ----------------------------------------------------------------------------
 	  SetLog("LoopCount : " & $loopCount, $COLOR_GREEN)
 
+	  SetLog("Scrolling pages", $COLOR_DARKGREY)
+	  If _Sleep(800) Then Return False
+	  ControlSend($HWnD, "", "",  "aaa")	;Press A A to scroll right
+	  If _Sleep(800) Then Return False
+	  ControlSend($HWnD, "", "",  "aaa")	;Press A A to scroll right
+
 	  SetLog("Open Adena Dungeon", $COLOR_DARKGREY)
 	  If _Sleep(1500) Then Return False
 	  ClickControlPos($POS_DUNGEON_ADENA)
 
-	  ; TODO FINISH LOOP
-	  ;
+	  If _Sleep(1000) Then Return False
+	  If CheckForPixel($CHECK_SCREEN_ADENA_NO_COUNT) Then
+		 SetLog("No Try Count", $COLOR_BLUE)
+
+		 ClickControlPos($POS_EXIT_RIGHT_BUTTON, 1, 1000)
+		 If _Sleep(500) Then Return
+		 ExitLoop
+	  EndIf
 
 	  SetLog("Select Difficulty : " & $setting_difficulty_adena, $COLOR_DARKGREY)
 	  If _Sleep(1000) Then Return False
@@ -61,7 +67,7 @@ Func DoAdenaDungeon()
 
 		 If _Sleep(1500) Then Return False
 
-		 If ActionAttck($CHECK_SCREEN_ADENA_END) = False Then
+		 If ActionAttck($CHECK_SCREEN_ADENA_END, 3) = False Then
 
 			SetLog("Adena Completed", $COLOR_PINK)
 			ClickControlPos($POS_COMMON_FINISH_BUTTON)
@@ -74,4 +80,5 @@ Func DoAdenaDungeon()
 
    WEnd
 
+   SetLog("Adena Dungeon End", $COLOR_PURPLE)
 EndFunc

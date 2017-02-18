@@ -25,7 +25,7 @@ Func DoScrollQuest()
 	  SetLog("Open Bag", $COLOR_DARKGREY)
 	  ClickControlPos($POS_TOPMENU_BAG)
 
-	   If _Sleep(2000) Then ExitLoop
+	  If _Sleep(2000) Then ExitLoop
 	  SetLog("Checking Advertising", $COLOR_DARKGREY)
 	  CloseAdvertisingScreen()
 
@@ -42,6 +42,7 @@ Func DoScrollQuest()
 	  ClickControlPos($POS_SCROLL_QUEST_REQUEST_BUTTON, 1, 500)
 	  ClickControlPos($POS_ALERT_QUESTION_OK_BUTTON, 1, 1000)
 
+	  If _Sleep(700) Then ExitLoop
 	  If CheckAlertInfoScreen() Then
 		 SetLog("No Try Count", $COLOR_DARKGREY)
 		 ClickControlPos($POS_ALERT_INFO_OK_BUTTON, 1, 1000)
@@ -70,9 +71,13 @@ Func DoScrollQuest()
 		  ; Click any skip button!
 		 ClickControlPos($POS_SKIP_BUTTON)
 
+		 ; To Walk Fast. It's just for mine, SilverRanger... :)
+		 ClickControlPos($POS_BATTLE_SKILL1_BUTTON, 2, 500)
+
 		 If CheckScrollQuestEndScreen() Then
 			ClickControlPos($POS_SCROLL_QUEST_END_BUTTON)
 			SetLog("Scroll Quest Completed!", $COLOR_PINK)
+			If _Sleep(1000) Then ExitLoop
 			$loopCount = $loopCount + 1
 			ExitLoop
 		 EndIf

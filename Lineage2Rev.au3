@@ -243,11 +243,14 @@ Func CheckForPixel($screenInfo, $PixelTolerance = 12)
 
    Local Const $RegionSize = 3
 
+   Local Const $WinX = $WinRect[0] - $ThickFrameSize
+   Local Const $WinY = $WinRect[1] - $NoxTitleBarHeight
+
    $okCount = 0
    For $p = 1 To UBound($posArr) - 1
 	  Local $pos = ControlPos($posArr[$p])
-	  $x = $WinRect[0] + $pos[0] - $ThickFrameSize
-	  $y = $WinRect[1] + $pos[1] - $NoxTitleBarHeight
+	  $x = $WinX + $pos[0]
+	  $y = $WinY + $pos[1]
 
 	  Local $found = False
 	  Local $colorArr = StringSplit($infoArr[2], ",")
@@ -257,7 +260,7 @@ Func CheckForPixel($screenInfo, $PixelTolerance = 12)
 		 Local $color = StringStripWS($colorArr[$c], $STR_STRIPLEADING + $STR_STRIPTRAILING)
 		 Local $aCoord = PixelSearch($x, $y, $x+$RegionSize, $y+$RegionSize, $color, $PixelTolerance)
 		 If Not @error Then
-			_log("CheckForPixel : [" & $p & "] " & $pos[0] & " x " & $pos[1] & " => OK " & ($aCoord[0] - $WinRect[0]) & " x " & ($aCoord[1] - $WinRect[1]) & ", " & $color & " (" & Hex($answerColor) & ")");
+			_log("CheckForPixel : [" & $p & "] " & $pos[0] & " x " & $pos[1] & " => OK " & ($aCoord[0] - $WinX) & " x " & ($aCoord[1] - $WinY) & ", " & $color & " (" & Hex($answerColor) & ") <" & $PixelTolerance & ">");
 			$okCount = $okCount + 1
 			$found = True
 			ExitLoop
@@ -265,9 +268,9 @@ Func CheckForPixel($screenInfo, $PixelTolerance = 12)
 	  Next
 
 	  If $found = False Then
-		 _log("CheckForPixel : " & $pos[0] & "(" & $x & ") x " & $pos[1] & "(" & $y & ") => FAIL (" & Hex($answerColor) & ")");
+		 _log("CheckForPixel : " & $pos[0] & "(" & $x & ") x " & $pos[1] & "(" & $y & ") => FAIL (" & Hex($answerColor) & ") <" & $PixelTolerance & ">")
+		 ExitLoop
 	  EndIf
-
    Next
 
    If $okCount == UBound($posArr) - 1 Then
@@ -304,8 +307,9 @@ Func CheckAlertPortalScreen()
    return CheckForPixel($CHECK_SCREEN_PORTALALERT)
 EndFunc
 
-Func CheckAlertInfoScreen()
-   return CheckForPixel($CHECK_SCREEN_ALERT_INFO)
+Func CheckAlertInfoScreen($posInfoString = "53:67")
+   Local $screenInfoNew = StringReplace($CHECK_SCREEN_ALERT_INFO, "XXX", $posInfoString)
+   return CheckForPixel($screenInfoNew)
 EndFunc
 
 Func CheckAlertLowPowerScreen()

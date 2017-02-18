@@ -4,6 +4,23 @@ Func DoPvPBattle()
    SetLog("PvP Battle Start", $COLOR_RED)
    $loopCount = 1
 
+#cs ----------------------------------------------------------------------------
+#ce ----------------------------------------------------------------------------
+
+   SetLog("Open Menu", $COLOR_DARKGREY)
+   ClickControlPos($POS_TOPMENU_MENU)
+   If _Sleep(500) Then Return False
+
+   SetLog("Open Battle", $COLOR_DARKGREY)
+   ClickControlPos($POS_MENU_BATTLE)
+
+   SetLog("Open PvP Battle", $COLOR_DARKGREY)
+   If _Sleep(1000) Then Return False
+   ClickControlPos($POS_BATTLE_PVP)
+
+   SetLog("Clean Up PVP", $COLOR_DARKGREY)
+   ClickControlPos($POS_EXIT_RIGHT_BUTTON, 1, 1000)
+
    SetLog("Open Menu", $COLOR_DARKGREY)
    ClickControlPos($POS_TOPMENU_MENU)
    If _Sleep(500) Then Return False
@@ -18,6 +35,9 @@ Func DoPvPBattle()
    While $RunState
 #cs ----------------------------------------------------------------------------
 #ce ----------------------------------------------------------------------------
+	  saveConfig()
+	  loadConfig()
+
 	  SetLog("LoopCount : " & $loopCount, $COLOR_GREEN)
 
 	  SetLog("Checking Try Count", $COLOR_DARKGREY)
@@ -33,10 +53,8 @@ Func DoPvPBattle()
 	  SetLog("Click Reward", $COLOR_DARKGREY)
 	  ClickControlPos($POS_BATTLE_PVP_REWARD)
 
-	  If CheckAlertInfoScreen() Then
-		 SetLog("Close Alert", $COLOR_DARKGREY)
-		 ClickControlPos($POS_ALERT_INFO_OK_BUTTON, 1, 1000)
-	  EndIf
+	  If _Sleep(1000) Then Return False
+	  ClickControlPos($POS_ALERT_ALERT_PVP_REWARD_BUTTON)
 
 	  If _Sleep(1200) Then Return False
 	  SetLog("Refresh List", $COLOR_DARKGREY)
@@ -103,4 +121,5 @@ Func DoPvPBattle()
 	  WEnd
    WEnd
 
+   SetLog("PVP End", $COLOR_PURPLE)
 EndFunc

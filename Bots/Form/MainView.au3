@@ -38,7 +38,10 @@ GUICtrlCreateTabItem("General")
 $x = $generalRightX
 $y = $contentPaneY + 5
 
+; Scroll Quest
+$w = 90
 $checkScrollQuestEnabled = GUICtrlCreateCheckbox("Scroll Quest", $x, $y, $w, 25)
+$btnScrollQuestGo = GUICtrlCreateButton("Go", $x + $w + 10, $y + 2, 40, 20)
 $y += 30
 
 GUICtrlCreateLabel("Scroll Pos", $x, $y)
@@ -49,12 +52,23 @@ Next
 _GUICtrlComboBox_SetCurSel($comboScrollPos, 1)
 $y += 30
 
+; PVP
+$w = 40
 $checkPvpEnabled = GUICtrlCreateCheckbox("PVP", $x, $y, $w, 25)
+$btnPvpGo = GUICtrlCreateButton("Go", $x + $w + 10, $y + 2, 40, 20)
+
+; Daily Dungeon
+$w = 100
 $y += 30
 $checkDailyDungeonEnabled = GUICtrlCreateCheckbox("Daily Dungeon", $x, $y, $w, 25)
+$btnDailyDungeonGo = GUICtrlCreateButton("Go", $x + $w + 10, $y + 2, 40, 20)
 
+; Adena Dungeon
+$w = 110
 $y += 30
 $checkAdenaEnabled = GUICtrlCreateCheckbox("Adena Dungeon", $x, $y, $w, 25)
+$btnAdenaDungeonGo = GUICtrlCreateButton("Go", $x + $w + 10, $y + 2, 40, 20)
+
 $y += 30
 GUICtrlCreateLabel("Difficulty", $x, $y)
 $comboAdenaDifficulty = GUICtrlCreateCombo("", $x + 70, $y - 5, 100, $h)
@@ -63,8 +77,12 @@ GUICtrlSetData($comboAdenaDifficulty, "Normal")
 GUICtrlSetData($comboAdenaDifficulty, "Hard")
 _GUICtrlComboBox_SetCurSel($comboAdenaDifficulty, 2)
 
+; Exp Dungeon
+$w = 100
 $y += 30
 $checkExpEnabled = GUICtrlCreateCheckbox("Exp Dungeon", $x, $y, $w, 25)
+$btnExpDungeonGo = GUICtrlCreateButton("Go", $x + $w + 10, $y + 2, 40, 20)
+
 $y += 30
 GUICtrlCreateLabel("Difficulty", $x, $y)
 $comboExpDifficulty = GUICtrlCreateCombo("", $x + 70, $y - 5, 100, $h)
@@ -73,8 +91,11 @@ GUICtrlSetData($comboExpDifficulty, "Normal")
 GUICtrlSetData($comboExpDifficulty, "Hard")
 _GUICtrlComboBox_SetCurSel($comboExpDifficulty, 2)
 
+; Oman's Tower
+$w = 120
 $y += 30
 $checkTowerDissipationEnabled = GUICtrlCreateCheckbox("Tower Dissipation", $x, $y, $w, 25)
+$btnTowerGo = GUICtrlCreateButton("Go", $x + $w + 10, $y + 2, 40, 20)
 
 ; The Bot Status Screen
 $txtLog = _GUICtrlRichEdit_Create($mainView, "", $contentPaneX, $contentPaneY, $logViewWidth, $logViewHeight, BitOR($ES_MULTILINE, $ES_READONLY, $WS_VSCROLL, 8912))
@@ -139,6 +160,13 @@ GUICtrlSetOnEvent($btnStop, "btnStop")	; already handled in GUIControl
 GUICtrlSetOnEvent($idTab, "tabChanged")
 GUICtrlSetOnEvent($btnCalcPos, "btnCalcPos")
 
+GUICtrlSetOnEvent($btnScrollQuestGo, "btnScrollQuestGo")
+GUICtrlSetOnEvent($btnPvpGo, "btnPvpGo")
+GUICtrlSetOnEvent($btnDailyDungeonGo, "btnDailyDungeonGo")
+GUICtrlSetOnEvent($btnAdenaDungeonGo, "btnAdenaDungeonGo")
+GUICtrlSetOnEvent($btnExpDungeonGo, "btnExpDungeonGo")
+GUICtrlSetOnEvent($btnTowerGo, "btnTowerGo")
+
 GUICtrlSetState($btnStart, $GUI_SHOW)
 GUICtrlSetState($btnStop, $GUI_HIDE)
 
@@ -157,12 +185,7 @@ Func tabChanged()
    EndIf
 EndFunc
 
-Func btnStart()
-   _log("START BUTTON CLICKED" )
-
-   _GUICtrlEdit_SetText($txtLog, "")
-   _WinAPI_EmptyWorkingSet(WinGetProcess($HWnD)) ; Reduce Nox Memory Usage
-
+Func InitBot()
    $RunState = True
    $PauseBot = False
 
@@ -182,8 +205,15 @@ Func btnStart()
    EndIf
 
    UpdateWindowRect()
+EndFunc
 
-   saveConfig()
+Func btnStart()
+   _log("START BUTTON CLICKED" )
+
+   _GUICtrlEdit_SetText($txtLog, "")
+   _WinAPI_EmptyWorkingSet(WinGetProcess($HWnD)) ; Reduce Nox Memory Usage
+
+   InitBot()
 
    runBot()
 
@@ -245,9 +275,35 @@ Func btnCalcPos()
    Else
 	  GUICtrlSetData($inputCalcResult, "Nox Not Found")
    EndIf
-
-
 EndFunc
+
+Func btnScrollQuestGo()
+   InitBot()
+   DoScrollQuest()
+EndFunc
+
+Func btnPvpGo()
+   InitBot()
+   DoPvPBattle()
+EndFunc
+
+Func btnDailyDungeonGo()
+   InitBot()
+EndFunc
+
+Func btnAdenaDungeonGo()
+   InitBot()
+   DoAdenaDungeon()
+EndFunc
+
+Func btnExpDungeonGo()
+   InitBot()
+EndFunc
+
+Func btnTowerGo()
+   InitBot()
+EndFunc
+
 
 ; System callback
 Func mainViewClose()
