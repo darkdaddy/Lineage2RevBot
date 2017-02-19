@@ -42,12 +42,16 @@ Func DoScrollQuest()
 	  ClickControlPos($POS_SCROLL_QUEST_REQUEST_BUTTON, 1, 500)
 
 	  If _Sleep(800) Then ExitLoop
-	  If CheckAlertInfoScreen() Then
-		 SetLog("No Try Count", $COLOR_DARKGREY)
-		 ClickControlPos($POS_ALERT_INFO_OK_BUTTON, 1, 1000)
 
-		 ClickControlPos($POS_EXIT_RIGHT_BUTTON, 1, 1000)
-		 ExitLoop
+	  If CheckForPixel($CHECK_SCREEN_ALERT_SCROLL_QUEST_START) = False Then
+
+		 If CheckAlertInfoScreen() Then
+			SetLog("No Try Count", $COLOR_DARKGREY)
+			ClickControlPos($POS_ALERT_INFO_OK_BUTTON, 1, 1000)
+
+			ClickControlPos($POS_EXIT_RIGHT_BUTTON, 1, 1000)
+			ExitLoop
+		 EndIf
 	  EndIf
 
 	  ClickControlPos($POS_ALERT_QUESTION_OK_BUTTON, 1, 1000)
@@ -80,6 +84,7 @@ Func DoScrollQuest()
 
 		 If CheckForPixel($CHECK_SCREEN_SKIP) = True Then
 			; Click any skip button!
+			SetLog("Skip Button Click", $COLOR_DARKGREY)
 			ClickControlPos($POS_SKIP_BUTTON)
 		 EndIf
 

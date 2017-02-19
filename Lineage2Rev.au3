@@ -327,10 +327,12 @@ Func CheckScrollQuestEndScreen()
 EndFunc
 
 Func CloseAdvertisingScreen()
-   If _Sleep(500) Then Return
+   If _Sleep(800) Then Return
+
    If CheckForPixel($CHECK_SCREEN_ADVERTISING) Then
 	  SetLog("Close Advertising", $COLOR_BLUE)
-	  ;ClickControlPos($POS_ALERT_ALERT_ADVERTISING_CLOSE_BUTTON, 1, 800)
+	  ClickControlPos($POS_ALERT_ALERT_ADVERTISING_DO_NOT_SEE_BUTTON, 1, 800)
+	  ClickControlPos($POS_ALERT_ALERT_ADVERTISING_CLOSE_BUTTON, 1, 800)
 	  If _Sleep(500) Then Return
    EndIf
 EndFunc

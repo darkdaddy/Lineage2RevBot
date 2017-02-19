@@ -297,33 +297,38 @@ EndFunc
 Func btnScrollQuestGo()
    InitBot()
    DoScrollQuest()
+   btnStop()
 EndFunc
 
 Func btnPvpGo()
    InitBot()
    DoPvPBattle()
+   btnStop()
 EndFunc
 
 Func btnDailyDungeonGo()
    InitBot()
    DoDailyDungeon()
+   btnStop()
 EndFunc
 
 Func btnAdenaDungeonGo()
    InitBot()
    DoAdenaDungeon()
+   btnStop()
 EndFunc
 
 Func btnExpDungeonGo()
    InitBot()
    ; Not Support Yet
+   btnStop()
 EndFunc
 
 Func btnTowerGo()
    InitBot()
    DoOmanTower()
+   btnStop()
 EndFunc
-
 
 ; System callback
 Func mainViewClose()
