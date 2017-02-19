@@ -13,5 +13,13 @@ Func AutoFlow()
 	  DoPvPBattle()
    EndIf
 
+   If $setting_enabled_daily_dungeon Then
+	  DoDailyDungeon()
+   EndIf
+
+   If $setting_enabled_tower_dissipation Then
+	  DoOmanTower()
+   EndIf
+
    Return True
 EndFunc

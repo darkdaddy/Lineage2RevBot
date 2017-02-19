@@ -75,9 +75,10 @@ Global const $POS_TOPMENU_BAG = "76.1:4.5"
 Global const $POS_MENU_DUNGEON = "18.3:91.5"
 Global const $POS_MENU_BATTLE = "30.8:91.5"
 
-Global const $POS_DUNGEON_ADENA = "64.9:56.3"
-Global const $POS_DUNGEON_EXP = "85.3:56.3"
-Global const $POS_DUNGEON_ENTER_BUTTON = "77.9:89.6"
+Global const $POS_DUNGEON_ADENA = "64.9:60"	; after scroll to right end
+Global const $POS_DUNGEON_EXP = "85.3:60"	; after scroll to right end
+Global const $POS_DUNGEON_OMANTOWER = "33.9:60"
+Global const $POS_DUNGEON_DAILY = "12.6:60"
 
 Global const $POS_BATTLE_PVP = "28.2:54.8"
 
@@ -98,6 +99,7 @@ Global const $POS_BAG_MISC_TAB = "85.8:17.3"
 Global const $POS_BAG_ITEM_LEFT = "51.4:25.3"
 Global const $POS_BAG_ITEM_RIGHT = "96.7:25.3"
 
+Global const $POS_BACK_LEFT_BUTTON = "3:5.2"
 Global const $POS_EXIT_RIGHT_BUTTON = "96.2:5.2"
 
 Global const $POS_SCROLL_QUEST_REQUEST_BUTTON = "87.8:92.9"
@@ -123,19 +125,34 @@ Global const $POS_BATTLE_SKILL2_BUTTON = "78.3:79.7"
 Global const $POS_BATTLE_SKILL3_BUTTON = "79.6:92"
 Global const $POS_BATTLE_ATTACK_BUTTON = "89.5:82.7"
 
+Global const $POS_DUNGEON_ADENA_ENTER_BUTTON = "77.9:89.6"
+Global const $POS_DUNGEON_DAILY_ENTER_BUTTON = "80.3:82.3"
+
+Global const $POS_OMAN_DISSIPATION_BUTTON = "60.1:89.3"
+
 Global const $POS_COMMON_FINISH_BUTTON = "70:91.1"
 
 ; ---------- Screen Check ------------
 Global const $CHECK_SCREEN_ALERT_INFO = "XXX | 0x224872,0x1B406B,0x6A401A"	; blue
+Global const $CHECK_SCREEN_ALERT_LOW_POWER = "53.7:73.8 | 0x224872, 0x1B406B, 0x6A401A"	; blue
+
 Global const $CHECK_SCREEN_PORTALALERT = "52.5:73 | 0x224872, 0x1B406B, 0x6A401A"	; blue
 Global const $CHECK_SCREEN_SCROLLQUEST_END = "42.8:85.8, 60.3:85.8, 63.3:85.8 66.3:85.8 | 0x224872, 0x1B406B, 0x6A401A | 8"	; blue
+
 Global const $CHECK_SCREEN_PVP_END = "70:91.1 | 0x224872,0x1B406B,0x6A401A"	; blue
 Global const $CHECK_SCREEN_PVP_START = "40:4.4 | 0xD00101,0xA51B06,0xDE0202"	; red
 Global const $CHECK_SCREEN_PVP_USE_RED_DIA = "53.5:70.8 | 0x224872,0x1B406B,0x6A401A"	; blue
 Global const $CHECK_SCREEN_PVP_NO_COUNT = "86.1:33.2 | 0x01F2028 | 8"	; darkgrey
+
 Global const $CHECK_SCREEN_ADENA_NO_COUNT = "75:90.5 | 0x0393D43,0x3B4045 | 8"	; darkgrey
-Global const $CHECK_SCREEN_ALERT_LOW_POWER = "53.7:73.8 | 0x224872, 0x1B406B, 0x6A401A"	; blue
 Global const $CHECK_SCREEN_ADENA_END = "70:91.1 | 0x224872,0x1B406B,0x6A401A"	; blue
+
+Global const $CHECK_SCREEN_DAILY_NO_COUNT = "75:83.3  | 0x0393D43,0x3B4045 | 8"	; darkgrey
+
+Global const $CHECK_SCREEN_AUTO_ATTCK_ACTIVATED = "65.4:91.3 | 0x0D5D5D5 | 8"	; white
+
+Global const $CHECK_SCREEN_COMMON_DUNGEON_MAIN = "77.7:5 | 0xEDBE5B, 0xCEA14A, 0xA27C36 | 16"	; yellow
+
 Global const $CHECK_SCREEN_SKIP = "84.7:97.1, 88.7:97.1 | 0x0000000"	; black
 
 ; ###################################

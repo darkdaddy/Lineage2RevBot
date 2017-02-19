@@ -11,6 +11,7 @@ Global $setting_item_pos_questscroll = 2
 Global $setting_pvp_use_red_dia = False
 Global $setting_delay_rate = 1.0
 Global $setting_difficulty_exp = 2
+Global $setting_difficulty_daily = 2
 Global $setting_difficulty_adena = 2
 
 Global $setting_enabled_scrollquest = True
@@ -25,6 +26,7 @@ Func loadConfig()
    $setting_win_title = IniRead($config, $setting_common_group, "win_title", $setting_win_title)
    $setting_item_pos_questscroll = Int(IniRead($config, $setting_common_group, "item_pos_questscroll", "2"))
    $setting_difficulty_exp = Int(IniRead($config, $setting_common_group, "difficulty_exp", "2"))
+   $setting_difficulty_daily = Int(IniRead($config, $setting_common_group, "difficulty_daily", "2"))
    $setting_difficulty_adena = Int(IniRead($config, $setting_common_group, "difficulty_adena", "2"))
    $setting_delay_rate =  Number(IniRead($config, $setting_common_group, "delay_rate", "1.0"))
 
@@ -45,6 +47,7 @@ Func applyConfig()
    _GUICtrlComboBox_SetCurSel($comboScrollPos, Int($setting_item_pos_questscroll) - 1)
    _GUICtrlComboBox_SetCurSel($comboExpDifficulty, Int($setting_difficulty_exp))
    _GUICtrlComboBox_SetCurSel($comboAdenaDifficulty, Int($setting_difficulty_adena))
+   _GUICtrlComboBox_SetCurSel($comboDailyDifficulty, Int($setting_difficulty_daily))
 
    GUICtrlSetState($checkPvpUseRedDiaEnabled, $setting_pvp_use_red_dia ? $GUI_CHECKED : $GUI_UNCHECKED)
 
@@ -63,6 +66,7 @@ Func saveConfig()
    IniWrite($config, $setting_common_group, "item_pos_questscroll", _GUICtrlComboBox_GetCurSel($comboScrollPos) + 1)
    IniWrite($config, $setting_common_group, "difficulty_exp", _GUICtrlComboBox_GetCurSel($comboExpDifficulty))
    IniWrite($config, $setting_common_group, "difficulty_adena", _GUICtrlComboBox_GetCurSel($comboAdenaDifficulty))
+   IniWrite($config, $setting_common_group, "difficulty_daily", _GUICtrlComboBox_GetCurSel($comboDailyDifficulty))
 
    IniWrite($config, $setting_common_group, "delay_rate", $setting_delay_rate)
 

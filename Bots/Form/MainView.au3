@@ -63,6 +63,15 @@ $y += 30
 $checkDailyDungeonEnabled = GUICtrlCreateCheckbox("Daily Dungeon", $x, $y, $w, 25)
 $btnDailyDungeonGo = GUICtrlCreateButton("Go", $x + $w + 10, $y + 2, 40, 20)
 
+$y += 30
+GUICtrlCreateLabel("Difficulty", $x, $y)
+$comboDailyDifficulty = GUICtrlCreateCombo("", $x + 70, $y - 5, 100, $h)
+GUICtrlSetData($comboDailyDifficulty, "Easy")
+GUICtrlSetData($comboDailyDifficulty, "Normal")
+GUICtrlSetData($comboDailyDifficulty, "Hard")
+GUICtrlSetData($comboDailyDifficulty, "Very Hard")
+_GUICtrlComboBox_SetCurSel($comboDailyDifficulty, 2)
+
 ; Adena Dungeon
 $w = 110
 $y += 30
@@ -173,6 +182,10 @@ GUICtrlSetOnEvent($btnTowerGo, "btnTowerGo")
 
 GUICtrlSetState($btnStart, $GUI_SHOW)
 GUICtrlSetState($btnStop, $GUI_HIDE)
+
+GUICtrlSetState($checkExpEnabled, $GUI_DISABLE)
+GUICtrlSetState($btnExpDungeonGo, $GUI_DISABLE)
+GUICtrlSetState($comboExpDifficulty, $GUI_DISABLE)
 
 GUISetState(@SW_SHOW, $mainView)
 
@@ -293,6 +306,7 @@ EndFunc
 
 Func btnDailyDungeonGo()
    InitBot()
+   DoDailyDungeon()
 EndFunc
 
 Func btnAdenaDungeonGo()
@@ -302,10 +316,12 @@ EndFunc
 
 Func btnExpDungeonGo()
    InitBot()
+   ; Not Support Yet
 EndFunc
 
 Func btnTowerGo()
    InitBot()
+   DoOmanTower()
 EndFunc
 
 

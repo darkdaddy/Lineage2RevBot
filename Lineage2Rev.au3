@@ -26,7 +26,9 @@ EndIf
 #include <Bots/AutoFlow.au3>
 #include <Bots/ScrollQuest.au3>
 #include <Bots/AdenaDungeon.au3>
+#include <Bots/DailyDungeon.au3>
 #include <Bots/PvPBattle.au3>
+#include <Bots/OmanTower.au3>
 #include <Bots/Form/MainView.au3>
 #include-once
 
@@ -171,8 +173,12 @@ Func GUIControl($hWind, $iMsg, $wParam, $lParam)
  EndFunc   ;==>GUIControl
 
 
+
 ;------------------------------------------------------------------------------
+;
 ; Util Function
+;
+;------------------------------------------------------------------------------
 
 Func UpdateWindowRect()
    $r = WinGetPos($HWnD)
@@ -329,7 +335,13 @@ Func CloseAdvertisingScreen()
    EndIf
 EndFunc
 
-Func ActionAttck($screenInfo, $maxSkill = 4)
+Func GoBackToMain()
+   SetLog("Go back to main", $COLOR_DARKGREY)
+   ClickControlPos($POS_BACK_LEFT_BUTTON, 2, 200)
+   ClickControlPos("50:50", 3, 100 )
+EndFunc
+
+Func ActionAttck($screenInfo, $maxSkill = 4, $normalAttack = True)
 
    Local Const $CastDelay = 300
    Local $skill = 0
@@ -338,7 +350,9 @@ Func ActionAttck($screenInfo, $maxSkill = 4)
 	  If CheckForPixel($screenInfo, 10) Then
 		 Return False
 	  Else
-		 ClickControlPos($POS_BATTLE_ATTACK_BUTTON)
+		 If $normalAttack Then
+			ClickControlPos($POS_BATTLE_ATTACK_BUTTON)
+		 EndIf
 		 Switch $skill
 			Case 0
 			   ClickControlPos($POS_BATTLE_RARE1_BUTTON)

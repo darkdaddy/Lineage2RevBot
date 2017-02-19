@@ -1,8 +1,8 @@
 
-Func DoAdenaDungeon()
+Func DoDailyDungeon()
 
    Local Const $CastDelay = 300
-   SetLog("Adena Dungeon Start", $COLOR_RED)
+   SetLog("Daily Dungeon Start", $COLOR_RED)
 
    $loopCount = 1
 
@@ -14,13 +14,13 @@ Func DoAdenaDungeon()
 
    SetLog("Scrolling pages", $COLOR_DARKGREY)
    If _Sleep(800) Then Return False
-   ControlSend($HWnD, "", "",  "aaa")	;Press A A to scroll right
+   ControlSend($HWnD, "", "",  "ddd")	;Press D D to scroll right
    If _Sleep(800) Then Return False
-   ControlSend($HWnD, "", "",  "aaa")	;Press A A to scroll right
+   ControlSend($HWnD, "", "",  "ddd")	;Press D D to scroll right
 
-   SetLog("Open Adena Dungeon", $COLOR_DARKGREY)
+   SetLog("Open Daily Dungeon", $COLOR_DARKGREY)
    If _Sleep(1500) Then Return False
-   ClickControlPos($POS_DUNGEON_ADENA)
+   ClickControlPos($POS_DUNGEON_DAILY)
 
    Local $noTryCount = False
    While $RunState AND $noTryCount = False
@@ -29,7 +29,7 @@ Func DoAdenaDungeon()
 	  SetLog("LoopCount : " & $loopCount, $COLOR_GREEN)
 
 	  If _Sleep(1000) Then Return False
-	  If CheckForPixel($CHECK_SCREEN_ADENA_NO_COUNT) Then
+	  If CheckForPixel($CHECK_SCREEN_DAILY_NO_COUNT) Then
 		 SetLog("No Try Count", $COLOR_BLUE)
 
 		 ClickControlPos($POS_EXIT_RIGHT_BUTTON, 1, 1000)
@@ -37,20 +37,23 @@ Func DoAdenaDungeon()
 		 ExitLoop
 	  EndIf
 
-	  SetLog("Select Difficulty : " & $setting_difficulty_adena, $COLOR_DARKGREY)
+	  SetLog("Select Difficulty : " & $setting_difficulty_daily, $COLOR_DARKGREY)
 	  If _Sleep(1000) Then Return False
-	  Switch $setting_difficulty_adena
+	  Switch $setting_difficulty_daily
 		 Case 0
-			ClickControlPos($POS_DUNGEON_DIFFICULTY_EASY, 2, 300)
+			ClickControlPos($POS_DAILY_DUNGEON_DIFFICULTY_EASY, 2, 300)
 		 Case 1
-			ClickControlPos($POS_DUNGEON_DIFFICULTY_NORMAL, 2, 300)
+			ClickControlPos($POS_DAILY_DUNGEON_DIFFICULTY_NORMAL, 2, 300)
 		 Case 2
-			ClickControlPos($POS_DUNGEON_DIFFICULTY_HARD, 2, 300)
+			ClickControlPos($POS_DAILY_DUNGEON_DIFFICULTY_HARD, 2, 300)
+		 Case 3
+			ClickControlPos($POS_DAILY_DUNGEON_DIFFICULTY_VERYHARD, 2, 300)
 	  EndSwitch
 
 	  SetLog("Entering Dungeon..", $COLOR_DARKGREY)
+
 	  If _Sleep(800) Then Return False
-	  ClickControlPos($POS_DUNGEON_ADENA_ENTER_BUTTON)
+	  ClickControlPos($POS_DUNGEON_DAILY_ENTER_BUTTON)
 
 	  If _Sleep(800) Then Return False
 	  If CheckAlertLowPowerScreen() Then
@@ -62,37 +65,35 @@ Func DoAdenaDungeon()
 		 ExitLoop
 	  EndIf
 
-	  SetLog("Waiting seconds..", $COLOR_DARKGREY)
-	  If _Sleep(3000) Then Return False
+	  SetLog("Waiting 5 seconds..", $COLOR_DARKGREY)
+	  If _Sleep(5000) Then Return False
 
-	  SetLog("Auto Attck Button Click", $COLOR_DARKGREY)
-	  ClickControlPos($POS_AUTO_BATTLE_BUTTON, 1, 200)
-
-	  If _Sleep(3000) Then Return False
 	  While $RunState
 
 		 If _Sleep(1500) Then Return False
 
-		 If ActionAttck($CHECK_SCREEN_ADENA_END, 3) = False Then
+		 If CheckForPixel($CHECK_SCREEN_AUTO_ATTCK_ACTIVATED) = False Then
+			SetLog("Auto Attck Button Click", $COLOR_DARKGREY)
 
-			SetLog("Adena Completed", $COLOR_PINK)
+			ClickControlPos($POS_AUTO_BATTLE_BUTTON, 1, 200)
+		 EndIf
+
+		 If ActionAttck($CHECK_SCREEN_ADENA_END, 3, False) = False Then
+
+			SetLog("Daily Completed", $COLOR_PINK)
 			ClickControlPos($POS_COMMON_FINISH_BUTTON)
 
 			SetLog("Waiting 7 seconds", $COLOR_PINK)
 			$loopCount = $loopCount + 1
 			If _Sleep(7000) Then Return False
-
-			If CheckForPixel($CHECK_SCREEN_COMMON_DUNGEON_MAIN) = False Then
-			   SetLog("No Try Count", $COLOR_PINK)
-			   $noTryCount = True
-
-			   GoBackToMain()
-			EndIf
-
 			ExitLoop
 		 EndIf
 	  WEnd
 
+	  ; TODO
+	  ; Just try only one yet.. Do u want more??
+	  ClickControlPos($POS_EXIT_RIGHT_BUTTON, 1, 1000)
+	  ExitLoop
    WEnd
 
    SetLog("Adena Dungeon End", $COLOR_PURPLE)
