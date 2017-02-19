@@ -114,7 +114,8 @@ Global const $POS_ALERT_ALERT_LOW_POWER_OK_BUTTON = "60:73.1"
 Global const $POS_ALERT_ALERT_PVP_REWARD_BUTTON = "32.9:65.8"
 Global const $POS_ALERT_ALERT_PVP_USE_RED_DIA_OK_BUTTON = "58.4:69.4"
 Global const $POS_ALERT_ALERT_PVP_USE_RED_DIA_CANCEL_BUTTON = "39.6:69.4"
-Global const $POS_ALERT_ALERT_ADVERTISING_CLOSE_BUTTON = [85.8, 30.1]
+Global const $POS_ALERT_ALERT_ADVERTISING_CLOSE_BUTTON = "85:20.8"
+Global const $POS_ALERT_ALERT_ADVERTISING_DO_NOT_SEE_BUTTON = "12.7:80.7"
 Global const $POS_SKIP_BUTTON = "93.2:68.6"
 
 Global const $POS_AUTO_BATTLE_BUTTON = "66.3:92.9"
@@ -134,6 +135,7 @@ Global const $POS_COMMON_FINISH_BUTTON = "70:91.1"
 
 ; ---------- Screen Check ------------
 Global const $CHECK_SCREEN_ALERT_INFO = "XXX | 0x224872,0x1B406B,0x6A401A"	; blue
+Global const $CHECK_SCREEN_ALERT_SCROLL_QUEST_START = "36.8:66.1 | 0x02C394A, 0x4D3C2F"	; dark blue (cancel button)
 Global const $CHECK_SCREEN_ALERT_LOW_POWER = "53.7:73.8 | 0x224872, 0x1B406B, 0x6A401A"	; blue
 
 Global const $CHECK_SCREEN_PORTALALERT = "52.5:73 | 0x224872, 0x1B406B, 0x6A401A"	; blue
@@ -155,6 +157,4 @@ Global const $CHECK_SCREEN_COMMON_DUNGEON_MAIN = "77.7:5 | 0xEDBE5B, 0xCEA14A, 0
 
 Global const $CHECK_SCREEN_SKIP = "84.7:97.1, 88.7:97.1 | 0x0000000"	; black
 
-; ###################################
-; Wrong value!!!!
-Global const $CHECK_SCREEN_ADVERTISING = "85.8:30.1 | 0xA4A1A4 | 5"	; grey 'X'
+Global const $CHECK_SCREEN_ADVERTISING = "85:20.8 | 0x0A4A0A4 | 5"	; grey 'X'
