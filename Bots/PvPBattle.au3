@@ -15,18 +15,11 @@ Func DoPvPBattle()
    ClickControlPos($POS_MENU_BATTLE)
 
    SetLog("Open PvP Battle", $COLOR_DARKGREY)
-   If _Sleep(1000) Then Return False
+   If _Sleep(1500) Then Return False
    ClickControlPos($POS_BATTLE_PVP)
 
    SetLog("Clean Up PVP", $COLOR_DARKGREY)
-   ClickControlPos($POS_EXIT_RIGHT_BUTTON, 1, 1000)
-
-   SetLog("Open Menu", $COLOR_DARKGREY)
-   ClickControlPos($POS_TOPMENU_MENU)
-   If _Sleep(500) Then Return False
-
-   SetLog("Open Battle", $COLOR_DARKGREY)
-   ClickControlPos($POS_MENU_BATTLE)
+   ClickControlPos($POS_BACK_LEFT_BUTTON, 1, 1000)
 
    SetLog("Open PvP Battle", $COLOR_DARKGREY)
    If _Sleep(1000) Then Return False
@@ -35,6 +28,8 @@ Func DoPvPBattle()
    While $RunState
 #cs ----------------------------------------------------------------------------
 #ce ----------------------------------------------------------------------------
+	  If _Sleep(1000) Then Return False
+
 	  saveConfig()
 	  loadConfig()
 
@@ -92,7 +87,7 @@ Func DoPvPBattle()
 		 If _Sleep(1000) Then Return False
 		 $waitSec = $waitSec + 1
 		 If CheckForPixel($CHECK_SCREEN_PVP_START, 30) = True Then
-			SetLog("Detected PvP Start Screen", $COLOR_YELLOW)
+			SetLog("Detected PvP Start Screen", $COLOR_DARKGREY)
 			ExitLoop
 		 EndIf
 	  WEnd

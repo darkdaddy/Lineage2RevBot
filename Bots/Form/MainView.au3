@@ -215,7 +215,7 @@ Func InitBot()
 
    If findWindow() Then
 	  WinActivate($HWnD)
-	  SetLog("Rect : " & $WinRect[0] & "," & $WinRect[1] & " " & $WinRect[2] & "x" & $WinRect[3] , $COLOR_ORANGE)
+	  SetLog("Nox : " & $WinRect[0] & "," & $WinRect[1] & " " & $WinRect[2] & "x" & $WinRect[3] , $COLOR_ORANGE)
    Else
 	  SetLog("Nox Not Found", $COLOR_RED)
 	  btnStop()

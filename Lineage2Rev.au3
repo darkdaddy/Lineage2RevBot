@@ -2,12 +2,12 @@
 
 #pragma compile(FileDescription, Raven Bot)
 #pragma compile(ProductName, Raven Bot)
-#pragma compile(ProductVersion, 0.1)
-#pragma compile(FileVersion, 0.1)
+#pragma compile(ProductVersion, 0.2)
+#pragma compile(FileVersion, 0.2)
 #pragma compile(LegalCopyright, DarkJaden)
 
 $sBotName = "Lineage 2 Revolution Bot"
-$sBotVersion = "0.1"
+$sBotVersion = "0.2"
 $sBotTitle = "AutoIt " & $sBotName & " v" & $sBotVersion
 
 If _Singleton($sBotTitle, 1) = 0 Then

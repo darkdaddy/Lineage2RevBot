@@ -76,7 +76,6 @@ Func DoAdenaDungeon()
 		 If ActionAttck($CHECK_SCREEN_ADENA_END, 3) = False Then
 
 			SetLog("Adena Completed", $COLOR_PINK)
-			ClickControlPos($POS_COMMON_FINISH_BUTTON)
 
 			SetLog("Waiting 7 seconds", $COLOR_PINK)
 			$loopCount = $loopCount + 1

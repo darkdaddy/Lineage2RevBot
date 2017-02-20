@@ -30,6 +30,7 @@ Func DoScrollQuest()
 	  CloseAdvertisingScreen()
 
 	  SetLog("Open Misc Tab", $COLOR_DARKGREY)
+	  If _Sleep(1500) Then ExitLoop
 	  ClickControlPos($POS_BAG_MISC_TAB, 3)
 
 	  ; One More Check
