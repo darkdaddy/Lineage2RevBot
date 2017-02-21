@@ -85,7 +85,6 @@ Func DoScrollQuest()
 
 		 If CheckForPixel($CHECK_SCREEN_SKIP) = True Then
 			; Click any skip button!
-			SetLog("Skip Button Click", $COLOR_DARKGREY)
 			ClickControlPos($POS_SKIP_BUTTON)
 		 EndIf
 

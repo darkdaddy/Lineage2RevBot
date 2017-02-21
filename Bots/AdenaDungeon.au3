@@ -79,9 +79,9 @@ Func DoAdenaDungeon()
 			If _Sleep(1000) Then Return False
 			ClickControlPos($POS_COMMON_FINISH_BUTTON, 1, 300)
 
-			SetLog("Waiting 7 seconds", $COLOR_PINK)
+			SetLog("Waiting 9 seconds", $COLOR_PINK)
 			$loopCount = $loopCount + 1
-			If _Sleep(7000) Then Return False
+			If _Sleep(9000) Then Return False
 
 			If CheckForPixel($CHECK_SCREEN_COMMON_DUNGEON_MAIN) = False Then
 			   SetLog("No Try Count", $COLOR_PINK)

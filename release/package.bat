@@ -1,5 +1,5 @@
 
-@SET VERSION=0.2
+@SET VERSION=0.3
 @SET SOURCE_DIR=..\..\Lineage2RevBot
 @SET TARGET=Lineage2RevBot
 @SET TARGET_DIR=.\
