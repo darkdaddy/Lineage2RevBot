@@ -106,6 +106,12 @@ $y += 30
 $checkTowerDissipationEnabled = GUICtrlCreateCheckbox("Tower Dissipation", $x, $y, $w, 25)
 $btnTowerGo = GUICtrlCreateButton("Go", $x + $w + 10, $y + 2, 40, 20)
 
+; Clean Red Dot
+$w = 120
+$y += 30
+$checkCleanRedDotEnabled = GUICtrlCreateCheckbox("Clean Red Dot", $x, $y, $w, 25)
+$btnCleanRedDotGo = GUICtrlCreateButton("Go", $x + $w + 10, $y + 2, 40, 20)
+
 ; The Bot Status Screen
 $txtLog = _GUICtrlRichEdit_Create($mainView, "", $contentPaneX, $contentPaneY, $logViewWidth, $logViewHeight, BitOR($ES_MULTILINE, $ES_READONLY, $WS_VSCROLL, 8912))
 
@@ -179,6 +185,7 @@ GUICtrlSetOnEvent($btnDailyDungeonGo, "btnDailyDungeonGo")
 GUICtrlSetOnEvent($btnAdenaDungeonGo, "btnAdenaDungeonGo")
 GUICtrlSetOnEvent($btnExpDungeonGo, "btnExpDungeonGo")
 GUICtrlSetOnEvent($btnTowerGo, "btnTowerGo")
+GUICtrlSetOnEvent($btnCleanRedDotGo, "btnCleanRedDotGo")
 
 GUICtrlSetState($btnStart, $GUI_SHOW)
 GUICtrlSetState($btnStop, $GUI_HIDE)
@@ -186,6 +193,8 @@ GUICtrlSetState($btnStop, $GUI_HIDE)
 GUICtrlSetState($checkExpEnabled, $GUI_DISABLE)
 GUICtrlSetState($btnExpDungeonGo, $GUI_DISABLE)
 GUICtrlSetState($comboExpDifficulty, $GUI_DISABLE)
+GUICtrlSetState($btnCleanRedDotGo, $GUI_DISABLE)
+GUICtrlSetState($checkCleanRedDotEnabled, $GUI_DISABLE)
 
 GUISetState(@SW_SHOW, $mainView)
 
@@ -215,6 +224,7 @@ Func InitBot()
 
    If findWindow() Then
 	  WinActivate($HWnD)
+	  IsNoxActivated()
 	  SetLog("Nox : " & $WinRect[0] & "," & $WinRect[1] & " " & $WinRect[2] & "x" & $WinRect[3] , $COLOR_ORANGE)
    Else
 	  SetLog("Nox Not Found", $COLOR_RED)
@@ -222,6 +232,10 @@ Func InitBot()
    EndIf
 
    UpdateWindowRect()
+
+   CloseAdvertisingScreen()
+
+   Return True
 EndFunc
 
 Func btnStart()
@@ -230,7 +244,9 @@ Func btnStart()
    _GUICtrlEdit_SetText($txtLog, "")
    _WinAPI_EmptyWorkingSet(WinGetProcess($HWnD)) ; Reduce Nox Memory Usage
 
-   InitBot()
+   If InitBot() = False Then
+	  Return
+   EndIf
 
    runBot()
 
@@ -295,38 +311,58 @@ Func btnCalcPos()
 EndFunc
 
 Func btnScrollQuestGo()
-   InitBot()
+   If InitBot() = False Then
+	  Return
+   EndIf
    DoScrollQuest()
    btnStop()
 EndFunc
 
 Func btnPvpGo()
-   InitBot()
+   If InitBot() = False Then
+	  Return
+   EndIf
    DoPvPBattle()
    btnStop()
 EndFunc
 
 Func btnDailyDungeonGo()
-   InitBot()
+   If InitBot() = False Then
+	  Return
+   EndIf
    DoDailyDungeon()
    btnStop()
 EndFunc
 
 Func btnAdenaDungeonGo()
-   InitBot()
+   If InitBot() = False Then
+	  Return
+   EndIf
    DoAdenaDungeon()
    btnStop()
 EndFunc
 
 Func btnExpDungeonGo()
-   InitBot()
+   If InitBot() = False Then
+	  Return
+   EndIf
    ; Not Support Yet
    btnStop()
 EndFunc
 
 Func btnTowerGo()
-   InitBot()
+   If InitBot() = False Then
+	  Return
+   EndIf
    DoOmanTower()
+   btnStop()
+EndFunc
+
+Func btnCleanRedDotGo()
+   If InitBot() = False Then
+	  Return
+   EndIf
+   DoCleanRedDot()
    btnStop()
 EndFunc
 

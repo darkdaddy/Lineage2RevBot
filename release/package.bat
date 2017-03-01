@@ -1,5 +1,5 @@
 
-@SET VERSION=0.3
+@SET VERSION=0.4
 @SET SOURCE_DIR=..\..\Lineage2RevBot
 @SET TARGET=Lineage2RevBot
 @SET TARGET_DIR=.\
@@ -17,3 +17,5 @@ copy %SOURCE_DIR%\Lineage2Rev.exe %TARGET_DIR%\%TARGET%\
 ::============================================
 del /F/Q/S %ARCHIVE_FILE_NAME%
 %ZIP_7Z_FILE% a -tzip %TARGET_DIR%\%ARCHIVE_FILE_NAME% %TARGET_DIR%\%TARGET%
+
+pause

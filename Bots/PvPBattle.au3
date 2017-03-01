@@ -12,7 +12,7 @@ Func DoPvPBattle()
    If _Sleep(500) Then Return False
 
    SetLog("Open Battle", $COLOR_DARKGREY)
-   ClickControlPos($POS_MENU_BATTLE)
+   ClickControlPos($POS_MENU_BATTLE, 1, 500)
 
    SetLog("Open PvP Battle", $COLOR_DARKGREY)
    If _Sleep(1500) Then Return False
@@ -25,6 +25,8 @@ Func DoPvPBattle()
    If _Sleep(1000) Then Return False
    ClickControlPos($POS_BATTLE_PVP)
 
+   Local $finishFlag = False
+
    While $RunState
 #cs ----------------------------------------------------------------------------
 #ce ----------------------------------------------------------------------------
@@ -35,37 +37,21 @@ Func DoPvPBattle()
 
 	  SetLog("LoopCount : " & $loopCount, $COLOR_GREEN)
 
-	  SetLog("Checking Try Count", $COLOR_DARKGREY)
-	  If _Sleep(2000) Then Return False
-	  If CheckForPixel($CHECK_SCREEN_PVP_NO_COUNT) = True Then
-		 SetLog("No Try Count", $COLOR_PINK)
-
-		 ClickControlPos($POS_EXIT_RIGHT_BUTTON, 1, 1000)
-		 If _Sleep(500) Then Return False
-		 ExitLoop
-	  EndIf
-
-	  SetLog("Click Reward", $COLOR_DARKGREY)
-	  ClickControlPos($POS_BATTLE_PVP_REWARD)
-
-	  If _Sleep(1000) Then Return False
-	  ClickControlPos($POS_ALERT_ALERT_PVP_REWARD_BUTTON)
-
 	  If _Sleep(1200) Then Return False
 	  SetLog("Refresh List", $COLOR_DARKGREY)
 	  ClickControlPos($POS_BATTLE_PVP_REFRESH)
 
+	  SetLog("Checking Try Count", $COLOR_DARKGREY)
 	  If CheckForPixel($CHECK_SCREEN_PVP_NO_COUNT) = True Then
 		 SetLog("No Try Count", $COLOR_PINK)
 
-		 ClickControlPos($POS_EXIT_RIGHT_BUTTON, 1, 1000)
-		 If _Sleep(500) Then Return False
+		 $finishFlag = True
 		 ExitLoop
 	  EndIf
 
 	  If _Sleep(1000) Then Return False
 	  SetLog("Battle Start", $COLOR_DARKGREY)
-	  ClickControlPos($POS_BATTLE_PVP_LIST_ITEM1)
+	  ClickControlPos($POS_BATTLE_PVP_LIST_ITEM4)
 
 	  If _Sleep(2000) Then Return False
 	  If CheckForPixel($CHECK_SCREEN_PVP_USE_RED_DIA) = True Then
@@ -76,7 +62,8 @@ Func DoPvPBattle()
 		 Else
 			SetLog("Don't Use Red Dia", $COLOR_DARKGREY)
 			ClickControlPos($POS_ALERT_ALERT_PVP_USE_RED_DIA_CANCEL_BUTTON)
-			ClickControlPos($POS_EXIT_RIGHT_BUTTON, 1, 1000)
+
+			$finishFlag = True
 			ExitLoop
 		 EndIf
 	  EndIf
@@ -93,7 +80,10 @@ Func DoPvPBattle()
 	  WEnd
 
 	  SetLog("Start battle", $COLOR_DARKGREY)
-	  If _Sleep(3000) Then Return False
+
+	  If _Sleep(500) Then Return False
+	  MoveTopRoundTravel()
+
 	  While $RunState
 
 		 If CheckForPixel($CHECK_SCREEN_PVP_END) = True Then
@@ -115,6 +105,18 @@ Func DoPvPBattle()
 		 EndIf
 	  WEnd
    WEnd
+
+   If $finishFlag Then
+
+	  SetLog("Click Reward", $COLOR_DARKGREY)
+	  ClickControlPos($POS_BATTLE_PVP_REWARD)
+
+	  If _Sleep(1000) Then Return False
+	  ClickControlPos($POS_ALERT_ALERT_PVP_REWARD_BUTTON)
+
+	  ClickControlPos($POS_EXIT_RIGHT_BUTTON, 1, 1000)
+	  If _Sleep(500) Then Return False
+   EndIf
 
    SetLog("PVP End", $COLOR_PURPLE)
 EndFunc

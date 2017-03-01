@@ -8,7 +8,7 @@ Local $setting_common_group = "Default"
 Global $setting_win_title = "녹스 안드로이드 앱플레이어"
 
 Global $setting_item_pos_questscroll = 2
-Global $setting_pvp_use_red_dia = False
+Global $setting_pvp_use_red_dia = True
 Global $setting_delay_rate = 1.0
 Global $setting_difficulty_exp = 2
 Global $setting_difficulty_daily = 2
@@ -20,6 +20,7 @@ Global $setting_enabled_adena_dungeon = False
 Global $setting_enabled_daily_dungeon = False
 Global $setting_enabled_exp_dungeon = False
 Global $setting_enabled_tower_dissipation = False
+Global $setting_enabled_clean_red_dot = False
 
 Func loadConfig()
 
@@ -38,6 +39,7 @@ Func loadConfig()
    $setting_enabled_daily_dungeon = IniRead($config, $setting_common_group, "enabled_daily_dungeon", "False") == "True" ? True : False
    $setting_enabled_exp_dungeon = IniRead($config, $setting_common_group, "enabled_exp_dungeon", "False") == "True" ? True : False
    $setting_enabled_tower_dissipation = IniRead($config, $setting_common_group, "enabled_tower_dissipation", "False") == "True" ? True : False
+   $setting_enabled_clean_red_dot = IniRead($config, $setting_common_group, "enabled_clean_red_dot", "False") == "True" ? True : False
 
 EndFunc	;==>loadConfig
 
@@ -57,6 +59,7 @@ Func applyConfig()
    GUICtrlSetState($checkDailyDungeonEnabled, $setting_enabled_daily_dungeon ? $GUI_CHECKED : $GUI_UNCHECKED)
    GUICtrlSetState($checkExpEnabled, $setting_enabled_exp_dungeon ? $GUI_CHECKED : $GUI_UNCHECKED)
    GUICtrlSetState($checkTowerDissipationEnabled, $setting_enabled_tower_dissipation ? $GUI_CHECKED : $GUI_UNCHECKED)
+   GUICtrlSetState($checkCleanRedDotEnabled, $setting_enabled_clean_red_dot ? $GUI_CHECKED : $GUI_UNCHECKED)
 
 EndFunc	;==>applyConfig
 
@@ -76,6 +79,7 @@ Func saveConfig()
    IniWrite($config, $setting_common_group, "enabled_daily_dungeon", _IsChecked($checkDailyDungeonEnabled))
    IniWrite($config, $setting_common_group, "enabled_exp_dungeon", _IsChecked($checkExpEnabled))
    IniWrite($config, $setting_common_group, "enabled_tower_dissipation", _IsChecked($checkTowerDissipationEnabled))
+   IniWrite($config, $setting_common_group, "enabled_clean_red_dot", _IsChecked($checkCleanRedDotEnabled))
 
    IniWrite($config, $setting_common_group, "enabled_pvp_use_red_dia", _IsChecked($checkPvpUseRedDiaEnabled))
 

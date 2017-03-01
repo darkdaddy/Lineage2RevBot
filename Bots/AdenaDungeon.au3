@@ -10,7 +10,7 @@ Func DoAdenaDungeon()
    ClickControlPos($POS_TOPMENU_MENU)
 
    SetLog("Open Dungeon", $COLOR_DARKGREY)
-   ClickControlPos($POS_MENU_DUNGEON)
+   ClickControlPos($POS_MENU_DUNGEON, 1, 1000)
 
    SetLog("Scrolling pages", $COLOR_DARKGREY)
    If _Sleep(800) Then Return False

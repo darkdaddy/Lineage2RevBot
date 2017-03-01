@@ -2,12 +2,12 @@
 
 #pragma compile(FileDescription, Raven Bot)
 #pragma compile(ProductName, Raven Bot)
-#pragma compile(ProductVersion, 0.3)
-#pragma compile(FileVersion, 0.3)
+#pragma compile(ProductVersion, 0.4)
+#pragma compile(FileVersion, 0.4)
 #pragma compile(LegalCopyright, DarkJaden)
 
 $sBotName = "Lineage 2 Revolution Bot"
-$sBotVersion = "0.3"
+$sBotVersion = "0.4"
 $sBotTitle = "AutoIt " & $sBotName & " v" & $sBotVersion
 
 If _Singleton($sBotTitle, 1) = 0 Then
@@ -29,6 +29,7 @@ EndIf
 #include <Bots/DailyDungeon.au3>
 #include <Bots/PvPBattle.au3>
 #include <Bots/OmanTower.au3>
+#include <Bots/CleanRedDot.au3>
 #include <Bots/Form/MainView.au3>
 #include-once
 
@@ -231,6 +232,17 @@ Func ClickBagItem($pos, $clickCount = 1, $delayMsec = 300)
 
 EndFunc
 
+Func IsNoxActivated()
+
+   Local $iState = WinGetState($HWnD)
+   If BitAND($iState, 8) Then
+	  _log("Nox activated")
+	  Return True
+   EndIf
+   _log("Nox Inactivated")
+   Return False
+EndFunc
+
 Func GetPixelColor($x, $y)
    $x = $WinRect[0] + $x - $ThickFrameSize
    $y = $WinRect[1] + $y - $NoxTitleBarHeight
@@ -342,6 +354,32 @@ Func GoBackToMain()
    ClickControlPos($POS_BACK_LEFT_BUTTON, 2, 200)
    ClickControlPos("50:50", 3, 100 )
 EndFunc
+
+Func MoveTopRoundTravel($checkActivated = True, $duration = 1400)
+
+   If $checkActivated = True Then
+	  WinActivate($HWnD)
+   EndIf
+
+   $p = ControlPos($POS_JOYSTICK_CENTER)
+   Local Const $WinX = $WinRect[0] - $ThickFrameSize
+   Local Const $WinY = $WinRect[1] - $NoxTitleBarHeight
+
+   $x = $p[0]
+   $y = $p[1]
+
+   MouseMove($x, $y)
+   MouseDown($MOUSE_CLICK_LEFT)
+   MouseMove($x+100, $y)
+   _Sleep($duration)
+   MouseMove($x, -100)
+   _Sleep($duration)
+   MouseMove(-100, -100)
+   _Sleep($duration)
+   MouseUp($MOUSE_CLICK_LEFT)
+
+EndFunc
+
 
 Func ActionAttck($screenInfo, $maxSkill = 4, $normalAttack = True)
 

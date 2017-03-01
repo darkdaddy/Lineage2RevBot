@@ -74,6 +74,17 @@ Global const $POS_TOPMENU_BAG = "76.1:4.5"
 
 Global const $POS_MENU_DUNGEON = "18.3:91.5"
 Global const $POS_MENU_BATTLE = "30.8:91.5"
+Global const $POS_MENU_GUILD = "43.7:91.5"
+Global const $POS_MENU_FRIEND = "55.4:91.5"
+Global const $POS_MENU_CHALLENGE = "43:7.4"
+Global const $POS_MENU_EVENT = "55.4:7.4"
+Global const $POS_MENU_SHOP = "67.7:7.4"
+
+Global const $POS_MENU_CHALLENGE_TODAY_ACTIVITY = "32.8:24.5"
+Global const $POS_MENU_CHALLENGE_TODAY_ACTIVITY_REWARD_BUTTON = "86.6:25.2"
+
+Global const $POS_MENU_CHALLENGE_ACHIEVEMENT = "46.9:24.5"
+Global const $POS_MENU_CHALLENGE_ACHIEVEMENT_TODAY_REWARD_BUTTON = "83:26.1"
 
 Global const $POS_DUNGEON_ADENA = "64.9:60"	; after scroll to right end
 Global const $POS_DUNGEON_EXP = "85.3:60"	; after scroll to right end
@@ -82,9 +93,10 @@ Global const $POS_DUNGEON_DAILY = "12.6:60"
 
 Global const $POS_BATTLE_PVP = "28.2:54.8"
 
-Global const $POS_BATTLE_PVP_REWARD = "40.5:22"
+Global const $POS_BATTLE_PVP_REWARD = "14.1:75.8"
 Global const $POS_BATTLE_PVP_REFRESH = "90.7:17.3"
-Global const $POS_BATTLE_PVP_LIST_ITEM1 = "91.1:32.2"
+Global const $POS_BATTLE_PVP_LIST_ITEM1 = "90:32"
+Global const $POS_BATTLE_PVP_LIST_ITEM4 = "90:87"
 
 Global const $POS_DUNGEON_DIFFICULTY_EASY = "25.1:31"
 Global const $POS_DUNGEON_DIFFICULTY_NORMAL = "25.1:45.2"
@@ -132,6 +144,12 @@ Global const $POS_DUNGEON_DAILY_ENTER_BUTTON = "80.3:82.3"
 Global const $POS_OMAN_DISSIPATION_BUTTON = "60.1:89.3"
 
 Global const $POS_COMMON_FINISH_BUTTON = "70:91.1"
+
+Global const $POS_JOYSTICK_LEFT = "1.3:79"
+Global const $POS_JOYSTICK_RIGHT = "20.1:79"
+Global const $POS_JOYSTICK_TOP = "11.3:67.5"
+Global const $POS_JOYSTICK_BOTTOM = "11.3:93.1"
+Global const $POS_JOYSTICK_CENTER = "11.5:79"
 
 ; ---------- Screen Check ------------
 Global const $CHECK_SCREEN_ALERT_INFO = "XXX | 0x224872,0x1B406B,0x6A401A"	; blue
