@@ -393,7 +393,7 @@ Func GoBackToMain()
    ClickControlPos("50:50", 3, 100 )
 EndFunc
 
-Func MoveTopRoundTravel($checkActivated = True, $duration = 1400)
+Func MoveTopRoundTravel($checkActivated = True, $duration = 1000)
 
    If $checkActivated = True Then
 	  WinActivate($HWnD)
