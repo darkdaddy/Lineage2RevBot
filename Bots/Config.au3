@@ -15,6 +15,7 @@ Global $setting_difficulty_daily = 2
 Global $setting_difficulty_adena = 2
 
 Global $setting_enabled_scrollquest = True
+Global $setting_enabled_weeklyquest = True
 Global $setting_enabled_pvp = False
 Global $setting_enabled_adena_dungeon = False
 Global $setting_enabled_daily_dungeon = False
@@ -34,6 +35,7 @@ Func loadConfig()
    $setting_pvp_use_red_dia = IniRead($config, $setting_common_group, "enabled_pvp_use_red_dia", "False") == "True" ? True : False
 
    $setting_enabled_scrollquest = IniRead($config, $setting_common_group, "enabled_scrollquest", "False") == "True" ? True : False
+   $setting_enabled_weeklyquest = IniRead($config, $setting_common_group, "enabled_weeklyquest", "False") == "True" ? True : False
    $setting_enabled_pvp = IniRead($config, $setting_common_group, "enabled_pvp", "False") == "True" ? True : False
    $setting_enabled_adena_dungeon = IniRead($config, $setting_common_group, "enabled_adena_dungeon", "False") == "True" ? True : False
    $setting_enabled_daily_dungeon = IniRead($config, $setting_common_group, "enabled_daily_dungeon", "False") == "True" ? True : False
@@ -54,6 +56,7 @@ Func applyConfig()
    GUICtrlSetState($checkPvpUseRedDiaEnabled, $setting_pvp_use_red_dia ? $GUI_CHECKED : $GUI_UNCHECKED)
 
    GUICtrlSetState($checkScrollQuestEnabled, $setting_enabled_scrollquest ? $GUI_CHECKED : $GUI_UNCHECKED)
+   GUICtrlSetState($checkWeeklyQuestEnabled, $setting_enabled_weeklyquest ? $GUI_CHECKED : $GUI_UNCHECKED)
    GUICtrlSetState($checkPvpEnabled, $setting_enabled_pvp ? $GUI_CHECKED : $GUI_UNCHECKED)
    GUICtrlSetState($checkAdenaEnabled, $setting_enabled_adena_dungeon ? $GUI_CHECKED : $GUI_UNCHECKED)
    GUICtrlSetState($checkDailyDungeonEnabled, $setting_enabled_daily_dungeon ? $GUI_CHECKED : $GUI_UNCHECKED)
@@ -74,6 +77,7 @@ Func saveConfig()
    IniWrite($config, $setting_common_group, "delay_rate", $setting_delay_rate)
 
    IniWrite($config, $setting_common_group, "enabled_scrollquest", _IsChecked($checkScrollQuestEnabled))
+   IniWrite($config, $setting_common_group, "enabled_weeklyquest", _IsChecked($checkWeeklyQuestEnabled))
    IniWrite($config, $setting_common_group, "enabled_pvp", _IsChecked($checkPvpEnabled))
    IniWrite($config, $setting_common_group, "enabled_adena_dungeon", _IsChecked($checkAdenaEnabled))
    IniWrite($config, $setting_common_group, "enabled_daily_dungeon", _IsChecked($checkDailyDungeonEnabled))

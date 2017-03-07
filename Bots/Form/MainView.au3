@@ -52,6 +52,12 @@ Next
 _GUICtrlComboBox_SetCurSel($comboScrollPos, 1)
 $y += 30
 
+; Weekly Quest
+$w = 100
+$checkWeeklyQuestEnabled = GUICtrlCreateCheckbox("Weekly Quest", $x, $y, $w, 25)
+$btnWeeklyQuestGo = GUICtrlCreateButton("Go", $x + $w + 10, $y + 2, 40, 20)
+$y += 30
+
 ; PVP
 $w = 40
 $checkPvpEnabled = GUICtrlCreateCheckbox("PVP", $x, $y, $w, 25)
@@ -180,6 +186,7 @@ GUICtrlSetOnEvent($idTab, "tabChanged")
 GUICtrlSetOnEvent($btnCalcPos, "btnCalcPos")
 
 GUICtrlSetOnEvent($btnScrollQuestGo, "btnScrollQuestGo")
+GUICtrlSetOnEvent($btnWeeklyQuestGo, "btnWeeklyQuestGo")
 GUICtrlSetOnEvent($btnPvpGo, "btnPvpGo")
 GUICtrlSetOnEvent($btnDailyDungeonGo, "btnDailyDungeonGo")
 GUICtrlSetOnEvent($btnAdenaDungeonGo, "btnAdenaDungeonGo")
@@ -315,6 +322,14 @@ Func btnScrollQuestGo()
 	  Return
    EndIf
    DoScrollQuest()
+   btnStop()
+EndFunc
+
+Func btnWeeklyQuestGo()
+   If InitBot() = False Then
+	  Return
+   EndIf
+   DoWeeklyQuest()
    btnStop()
 EndFunc
 

@@ -71,6 +71,7 @@ Global Const $COLOR_DARKGREY = 0x555555
 ; ---------- Positions ------------
 Global const $POS_TOPMENU_MENU = "71.2:4.8"
 Global const $POS_TOPMENU_BAG = "76.1:4.5"
+Global const $POS_TOPMENU_QUEST = "71.2:12.4"
 
 Global const $POS_MENU_DUNGEON = "18.3:91.5"
 Global const $POS_MENU_BATTLE = "30.8:91.5"

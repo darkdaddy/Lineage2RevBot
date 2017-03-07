@@ -2,12 +2,12 @@
 
 #pragma compile(FileDescription, Raven Bot)
 #pragma compile(ProductName, Raven Bot)
-#pragma compile(ProductVersion, 0.4)
-#pragma compile(FileVersion, 0.4)
+#pragma compile(ProductVersion, 0.5)
+#pragma compile(FileVersion, 0.5)
 #pragma compile(LegalCopyright, DarkJaden)
 
 $sBotName = "Lineage 2 Revolution Bot"
-$sBotVersion = "0.4"
+$sBotVersion = "0.5"
 $sBotTitle = "AutoIt " & $sBotName & " v" & $sBotVersion
 
 If _Singleton($sBotTitle, 1) = 0 Then
@@ -25,6 +25,7 @@ EndIf
 #include <Bots/Config.au3>
 #include <Bots/AutoFlow.au3>
 #include <Bots/ScrollQuest.au3>
+#include <Bots/WeeklyQuest.au3>
 #include <Bots/AdenaDungeon.au3>
 #include <Bots/DailyDungeon.au3>
 #include <Bots/PvPBattle.au3>
@@ -248,6 +249,43 @@ Func GetPixelColor($x, $y)
    $y = $WinRect[1] + $y - $NoxTitleBarHeight
    Local $c = PixelGetColor($x, $y)
    Return $c
+EndFunc
+
+Func SearchPixel($regionInfo, $PixelTolerance = 12)
+   Local $infoArr = StringSplit($regionInfo, "|")
+   Local $posArr = StringSplit($infoArr[1], "-")
+
+   If UBound($infoArr) - 1 >= 3 Then
+	  $PixelTolerance = Number($infoArr[3])
+   EndIf
+
+   Local $WinX = $WinRect[0] - $ThickFrameSize
+   Local $WinY = $WinRect[1] - $NoxTitleBarHeight
+
+   Local $leftTopPos = ControlPos($posArr[1])
+   Local $rightBottomPos = ControlPos($posArr[2])
+
+   $x1 = $WinX + $leftTopPos[0]
+   $y1 = $WinY + $leftTopPos[1]
+   $x2 = $WinX + $rightBottomPos[0]
+   $y2 = $WinY + $rightBottomPos[1]
+
+   Local $colorArr = StringSplit($infoArr[2], ",")
+
+   Local $lastRet
+   For $c = 1 To UBound($colorArr) - 1
+	  Local $color = StringStripWS($colorArr[$c], $STR_STRIPLEADING + $STR_STRIPTRAILING)
+	  $aCoord = PixelSearch($x1, $y1, $x2, $y2, $color, $PixelTolerance, 1, $HWnD)
+	  If Not @error Then
+		 _log("SearchPixel OK: " & $x1 & " x " & $y1 & " => OK " & ($aCoord[0]) & " x " & ($aCoord[1]) & ", " & $color )
+		 $lastRet = $aCoord
+	  Else
+		 _log("SearchPixel Failed: " & $x1 & " x " & $y1 & " => " & $color )
+		 Return False
+	  EndIf
+   Next
+
+   Return $lastRet
 EndFunc
 
 Func CheckForPixel($screenInfo, $PixelTolerance = 12)
