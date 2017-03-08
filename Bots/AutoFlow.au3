@@ -5,31 +5,37 @@ Func AutoFlow()
 
    If $setting_enabled_mainquest Then
 	  DoMainQuest()
+	  If _Sleep($TermDelay) Then Return False
    EndIf
 
    If $setting_enabled_scrollquest Then
-	  If _Sleep($TermDelay) Then Return False
 	  DoScrollQuest()
+  	  If _Sleep($TermDelay) Then Return False
    EndIf
 
    If $setting_enabled_adena_dungeon Then
-	  If _Sleep($TermDelay) Then Return False
 	  DoAdenaDungeon()
+	  If _Sleep($TermDelay) Then Return False
    EndIf
 
    If $setting_enabled_pvp Then
-	  If _Sleep($TermDelay) Then Return False
 	  DoPvPBattle()
+   	  If _Sleep($TermDelay) Then Return False
    EndIf
 
    If $setting_enabled_daily_dungeon Then
-	  If _Sleep($TermDelay) Then Return False
 	  DoDailyDungeon()
+   	  If _Sleep($TermDelay) Then Return False
    EndIf
 
    If $setting_enabled_tower_dissipation Then
 	  If _Sleep($TermDelay) Then Return False
 	  DoOmanTower()
+   EndIf
+
+   If $setting_enabled_weeklyquest Then
+	  If _Sleep($TermDelay) Then Return False
+	  DoWeeklyQuest()
    EndIf
 
    Return True

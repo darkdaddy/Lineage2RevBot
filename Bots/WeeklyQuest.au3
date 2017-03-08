@@ -55,8 +55,9 @@ Func DoWeeklyQuest()
 
 	  ; Check Quest Not Available
 	  If _Sleep(1000) Then ExitLoop
-	  If CheckForPixel("65.3:68.3, 78.3:68.3 | 0x17202F | 6") Then
+	  If CheckForPixel("65.3:68.3, 78.3:68.3 | 0x17202F, 0x151A25 | 6") Then
 		 SetLog("No Weekly Quest", $COLOR_RED)
+		 ClickControlPos($POS_EXIT_RIGHT_BUTTON, 1, 1000)
 		 ExitLoop
 	  EndIf
 
