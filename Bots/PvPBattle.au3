@@ -81,7 +81,6 @@ Func DoPvPBattle()
 
 	  SetLog("Start battle", $COLOR_DARKGREY)
 
-	  If _Sleep(500) Then Return False
 	  MoveTopRoundTravel()
 
 	  While $RunState
