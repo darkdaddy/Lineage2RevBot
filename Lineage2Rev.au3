@@ -2,12 +2,12 @@
 
 #pragma compile(FileDescription, Raven Bot)
 #pragma compile(ProductName, Raven Bot)
-#pragma compile(ProductVersion, 0.5)
-#pragma compile(FileVersion, 0.5)
+#pragma compile(ProductVersion, 0.6)
+#pragma compile(FileVersion, 0.6)
 #pragma compile(LegalCopyright, DarkJaden)
 
 $sBotName = "Lineage 2 Revolution Bot"
-$sBotVersion = "0.5"
+$sBotVersion = "0.6"
 $sBotTitle = "AutoIt " & $sBotName & " v" & $sBotVersion
 
 If _Singleton($sBotTitle, 1) = 0 Then
@@ -380,6 +380,7 @@ EndFunc
 Func CloseAdvertisingScreen()
    If _Sleep(800) Then Return
 
+   _log("Check Advertising Screen.." );
    If CheckForPixel($CHECK_SCREEN_ADVERTISING) Then
 	  SetLog("Close Advertising", $COLOR_BLUE)
 	  ClickControlPos($POS_ALERT_ALERT_ADVERTISING_DO_NOT_SEE_BUTTON, 1, 800)

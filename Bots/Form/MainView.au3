@@ -197,9 +197,6 @@ GUICtrlSetOnEvent($btnMainQuestGo, "btnMainQuestDo")
 GUICtrlSetState($btnStart, $GUI_SHOW)
 GUICtrlSetState($btnStop, $GUI_HIDE)
 
-GUICtrlSetState($checkMainQuestEnabled, $GUI_DISABLE)
-GUICtrlSetState($btnMainQuestGo, $GUI_DISABLE)
-
 GUICtrlSetState($checkExpEnabled, $GUI_DISABLE)
 GUICtrlSetState($btnExpDungeonGo, $GUI_DISABLE)
 GUICtrlSetState($comboExpDifficulty, $GUI_DISABLE)

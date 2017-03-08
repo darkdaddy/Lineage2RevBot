@@ -81,9 +81,16 @@ Func DoWeeklyQuest()
 			   If _Sleep(1000) Then ExitLoop
 			   ExitLoop
 			Else
-			   SetLog("Not Completed", $COLOR_BLUE)
-			   ClickControlPos($POS_EXIT_RIGHT_BUTTON, 1, 1000)
-			   ClickPos($itemPos, 700, 1)
+			   SetLog("Wrong Completion Detected", $COLOR_RED)
+
+			   If _Sleep(1000) Then ExitLoop
+			   If CheckAlertPortalScreen() Then
+				  SetLog("Go Walk!", $COLOR_DARKGREY)
+				  ClickControlPos($POS_SCROLL_QUEST_ALERT_WALK_BUTTON, 1, 1000)
+			   Else
+				  ; Click to start quest again...
+				  ClickPos($itemPos, 1, 500)
+			   EndIf
 			EndIf
 
 		 EndIf

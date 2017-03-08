@@ -8,61 +8,38 @@
 
 #ce ----------------------------------------------------------------------------
 
+Func StartMainQuest()
+   ; Click Main Quest board
+   ClickControlPos("4.8:25.5", 1, 300);
+   ClickControlPos("9.7:35", 1, 300);
+EndFunc
+
 Func DoMainQuest()
 
-   SetLog("ScrollQuest Start", $COLOR_RED)
+   SetLog("MainQuest Start", $COLOR_RED)
 
    Local Const $CheckDelay = 2000
 
    $loopCount = 1
 
+   StartMainQuest()
+
    While $RunState
 #cs ----------------------------------------------------------------------------
 #ce ----------------------------------------------------------------------------
+  	  SetLog("LoopCount : " & $loopCount, $COLOR_GREEN)
 
-	  If CheckForPixel($CHECK_SCREEN_MAINQUEST_EPISODE_END) Then
-
+	  If _Sleep(1200) Then ExitLoop
+	  If CheckForPixel($CHECK_SCREEN_SKIP) = True Then
+		 ; Click any skip button!
+		 ClickControlPos($POS_SKIP_BUTTON)
 	  EndIf
 
-	  SetLog("LoopCount : " & $loopCount, $COLOR_GREEN)
-
-	  SetLog("Open Bag", $COLOR_DARKGREY)
-	  ClickControlPos($POS_TOPMENU_BAG)
-
-	  If _Sleep(2000) Then ExitLoop
-	  SetLog("Checking Advertising", $COLOR_DARKGREY)
-	  CloseAdvertisingScreen()
-
-	  SetLog("Open Misc Tab", $COLOR_DARKGREY)
-	  If _Sleep(1500) Then ExitLoop
-	  ClickControlPos($POS_BAG_MISC_TAB, 3)
-
-	  ; One More Check
-	  CloseAdvertisingScreen()
-
-	  SetLog("Use Scroll", $COLOR_DARKGREY)
-	  ClickBagItem($setting_item_pos_questscroll)
-
-	  SetLog("Request Quest", $COLOR_DARKGREY)
-	  ClickControlPos($POS_SCROLL_QUEST_REQUEST_BUTTON, 1, 500)
-
-	  If _Sleep(800) Then ExitLoop
-
-	  If CheckForPixel($CHECK_SCREEN_ALERT_SCROLL_QUEST_START) = False Then
-
-		 If CheckAlertInfoScreen() Then
-			SetLog("No Try Count", $COLOR_DARKGREY)
-			ClickControlPos($POS_ALERT_INFO_OK_BUTTON, 1, 1000)
-
-			ClickControlPos($POS_EXIT_RIGHT_BUTTON, 1, 1000)
-			ExitLoop
-		 EndIf
+	  If _Sleep(1000) Then ExitLoop
+	  If CheckForPixel($CHECK_SCREEN_SCROLLQUEST_START) Then
+		 SetLog("Start Quest", $COLOR_DARKGREY)
+		 ClickControlPos($POS_SCROLL_QUEST_START_BUTTON, 1, 1000)
 	  EndIf
-
-	  ClickControlPos($POS_ALERT_QUESTION_OK_BUTTON, 1, 1000)
-
-	  SetLog("Start Quest", $COLOR_DARKGREY)
-	  ClickControlPos($POS_SCROLL_QUEST_START_BUTTON, 1, 1000)
 
 	  ; Wait some seconds for checking what screen will show..
 	  If _Sleep(2000) Then ExitLoop
@@ -92,11 +69,31 @@ Func DoMainQuest()
 			ClickControlPos($POS_SKIP_BUTTON)
 		 EndIf
 
+		 Local $completedQuest = False
+
+		 ; Checking Quest completion
 		 If CheckScrollQuestEndScreen() Then
 			ClickControlPos($POS_SCROLL_QUEST_END_BUTTON)
-			SetLog("Scroll Quest Completed!", $COLOR_PINK)
+			SetLog("Main Quest Completed!", $COLOR_PINK)
 			If _Sleep(1000) Then ExitLoop
 			$loopCount = $loopCount + 1
+			$completedQuest = True
+		 EndIf
+
+		 ; Checking Episode completion
+		 If CheckForPixel("77.4:88.3, 87.9:88.3 | 0x224872, 0x1B406B, 0x6A401A | 8") Then
+			SetLog("Episode Completed", $COLOR_DARKGREY)
+			ClickControlPos("7.4:88.3", 1, 1000)
+
+			SetLog("Waiting 6 sec...", $COLOR_PINK)
+			If _Sleep(6000) Then ExitLoop
+
+			$completedQuest = True
+		 EndIf
+
+		 If $completedQuest Then
+			If _Sleep(1000) Then ExitLoop
+			StartMainQuest()
 			ExitLoop
 		 EndIf
 
@@ -106,5 +103,5 @@ Func DoMainQuest()
 
    WEnd
 
-   SetLog("ScrollQuest End", $COLOR_PURPLE)
+   SetLog("MainQuest End", $COLOR_PURPLE)
 EndFunc
