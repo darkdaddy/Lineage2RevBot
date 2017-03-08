@@ -3,8 +3,8 @@ Func AutoFlow()
 
    Local Const $TermDelay = 1500
 
-   If $setting_enabled_clean_red_dot Then
-	  DoCleanRedDot()
+   If $setting_enabled_mainquest Then
+	  DoMainQuest()
    EndIf
 
    If $setting_enabled_scrollquest Then

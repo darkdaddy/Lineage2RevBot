@@ -30,6 +30,7 @@ EndIf
 #include <Bots/DailyDungeon.au3>
 #include <Bots/PvPBattle.au3>
 #include <Bots/OmanTower.au3>
+#include <Bots/MainQuest.au3>
 #include <Bots/CleanRedDot.au3>
 #include <Bots/Form/MainView.au3>
 #include-once

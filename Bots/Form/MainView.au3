@@ -115,8 +115,8 @@ $btnTowerGo = GUICtrlCreateButton("Go", $x + $w + 10, $y + 2, 40, 20)
 ; Clean Red Dot
 $w = 120
 $y += 30
-$checkCleanRedDotEnabled = GUICtrlCreateCheckbox("Clean Red Dot", $x, $y, $w, 25)
-$btnCleanRedDotGo = GUICtrlCreateButton("Go", $x + $w + 10, $y + 2, 40, 20)
+$checkMainQuestEnabled = GUICtrlCreateCheckbox("Main Quest", $x, $y, $w, 25)
+$btnMainQuestGo = GUICtrlCreateButton("Go", $x + $w + 10, $y + 2, 40, 20)
 
 ; The Bot Status Screen
 $txtLog = _GUICtrlRichEdit_Create($mainView, "", $contentPaneX, $contentPaneY, $logViewWidth, $logViewHeight, BitOR($ES_MULTILINE, $ES_READONLY, $WS_VSCROLL, 8912))
@@ -192,7 +192,7 @@ GUICtrlSetOnEvent($btnDailyDungeonGo, "btnDailyDungeonGo")
 GUICtrlSetOnEvent($btnAdenaDungeonGo, "btnAdenaDungeonGo")
 GUICtrlSetOnEvent($btnExpDungeonGo, "btnExpDungeonGo")
 GUICtrlSetOnEvent($btnTowerGo, "btnTowerGo")
-GUICtrlSetOnEvent($btnCleanRedDotGo, "btnCleanRedDotGo")
+GUICtrlSetOnEvent($btnMainQuestGo, "btnMainQuestDo")
 
 GUICtrlSetState($btnStart, $GUI_SHOW)
 GUICtrlSetState($btnStop, $GUI_HIDE)
@@ -200,8 +200,6 @@ GUICtrlSetState($btnStop, $GUI_HIDE)
 GUICtrlSetState($checkExpEnabled, $GUI_DISABLE)
 GUICtrlSetState($btnExpDungeonGo, $GUI_DISABLE)
 GUICtrlSetState($comboExpDifficulty, $GUI_DISABLE)
-GUICtrlSetState($btnCleanRedDotGo, $GUI_DISABLE)
-GUICtrlSetState($checkCleanRedDotEnabled, $GUI_DISABLE)
 
 GUISetState(@SW_SHOW, $mainView)
 
@@ -373,11 +371,11 @@ Func btnTowerGo()
    btnStop()
 EndFunc
 
-Func btnCleanRedDotGo()
+Func btnMainQuestDo()
    If InitBot() = False Then
 	  Return
    EndIf
-   DoCleanRedDot()
+   DoMainQuest()
    btnStop()
 EndFunc
 
