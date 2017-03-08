@@ -116,7 +116,7 @@ Func DoWeeklyQuest()
 				  ClickControlPos($POS_SCROLL_QUEST_ALERT_WALK_BUTTON, 1, 1000)
 			   Else
 				  ; Click to start quest again...
-				  ClickPos($itemPos, 1, 500)
+				  ClickPos($itemPos, 500, 1)
 			   EndIf
 			EndIf
 
