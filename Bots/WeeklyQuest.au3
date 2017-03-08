@@ -72,6 +72,7 @@ Func DoWeeklyQuest()
 			If CheckForPixel("65.9:69.7 | 0x224872, 0x1B406B, 0x6A401A") Then
 			   SetLog("Weekly Quest Completed!", $COLOR_PINK)
 
+			   ; Click Complete button
 			   ClickControlPos("65.9:69.7 ", 1, 500)
 			   $loopCount = $loopCount + 1
 
@@ -79,6 +80,10 @@ Func DoWeeklyQuest()
 
 			   If _Sleep(1000) Then ExitLoop
 			   ExitLoop
+			Else
+			   SetLog("Not Completed", $COLOR_BLUE)
+			   ClickControlPos($POS_EXIT_RIGHT_BUTTON, 1, 1000)
+			   ClickPos($itemPos, 700, 1)
 			EndIf
 
 		 EndIf
