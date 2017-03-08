@@ -56,6 +56,11 @@ Func DoWeeklyQuest()
 		 EndIf
 
 		 $pos = SearchPixel( "15.4:30-21:59.4 | 0xC1CCD9,0x6794C8 | 6" )
+
+		 If IsArray($pos) = False Then
+			$pos = SearchPixel( "15.4:30-21:59.4 | 0xDDC4AF,0xCD945D | 6" )
+		 EndIf
+
 		 If IsArray($pos) Then
 			Local $itemX = $pos[0] - $WinRect[0] + $ThickFrameSize
 			Local $itemY = $pos[1] - $WinRect[1] + $NoxTitleBarHeight

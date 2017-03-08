@@ -61,7 +61,7 @@ Func DoScrollQuest()
 	  ClickControlPos($POS_SCROLL_QUEST_START_BUTTON, 1, 1000)
 
 	  ; Wait some seconds for checking what screen will show..
-	  If _Sleep(2000) Then ExitLoop
+	  If _Sleep(1500) Then ExitLoop
 
 	  If CheckAlertPortalScreen() Then
 		 SetLog("Go Walk!", $COLOR_DARKGREY)
