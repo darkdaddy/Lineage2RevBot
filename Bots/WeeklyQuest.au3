@@ -100,7 +100,7 @@ Func DoWeeklyQuest()
 
 			ClickPos($itemPos, 200, 1)
 
-			If _Sleep(1000) Then ExitLoop
+			If _Sleep(1500) Then ExitLoop
 			If CheckWeeklyQuestCompletionScreen() Then
 
 			   $loopCount = $loopCount + 1
