@@ -33,27 +33,27 @@ Func DoWeeklyQuest()
 	  If _Sleep(1000) Then ExitLoop
 	  ClickControlPos("72.1:68.6");
 
-	  SetLog("Move Now", $COLOR_DARKGREY)
-	  If _Sleep(1000) Then ExitLoop
-	  ClickControlPos("72.1:68.6");
-
-	  If _Sleep(1000) Then ExitLoop
+	   If _Sleep(1000) Then ExitLoop
 	  If CheckAlertPortalScreen() Then
 		 SetLog("Go Walk!", $COLOR_DARKGREY)
 		 ClickControlPos($POS_SCROLL_QUEST_ALERT_WALK_BUTTON, 1, 1000)
 	  Else
-		 SetLog("Go!", $COLOR_DARKGREY)
+		 SetLog("Move Now", $COLOR_DARKGREY)
+		 If _Sleep(1000) Then ExitLoop
+		 ClickControlPos("72.1:68.6");
+
+		 If _Sleep(1000) Then ExitLoop
+		 If CheckAlertPortalScreen() Then
+			SetLog("Go Walk!", $COLOR_DARKGREY)
+			ClickControlPos($POS_SCROLL_QUEST_ALERT_WALK_BUTTON, 1, 1000)
+		 Else
+			SetLog("Go!", $COLOR_DARKGREY)
+		 EndIf
 	  EndIf
 
 	  While $RunState
 
 		 UpdateWindowRect()
-
-		 If _IsChecked($checkScrollQuestManualAttackEnabled) = False Then
-
-			; To Walk Fast. It's just for mine, SilverRanger... :)
-			ClickControlPos($POS_BATTLE_SKILL1_BUTTON, 2, 500)
-		 EndIf
 
 		 $pos = SearchPixel( "15.4:30-21:59.4 | 0xC1CCD9,0x6794C8 | 6" )
 
