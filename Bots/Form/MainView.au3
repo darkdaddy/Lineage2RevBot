@@ -58,6 +58,12 @@ $checkWeeklyQuestEnabled = GUICtrlCreateCheckbox("Weekly Quest", $x, $y, $w, 25)
 $btnWeeklyQuestGo = GUICtrlCreateButton("Go", $x + $w + 10, $y + 2, 40, 20)
 $y += 30
 
+; Main Quest
+$w = 120
+$checkMainQuestEnabled = GUICtrlCreateCheckbox("Main Quest", $x, $y, $w, 25)
+$btnMainQuestGo = GUICtrlCreateButton("Go", $x + $w + 10, $y + 2, 40, 20)
+$y += 30
+
 ; PVP
 $w = 40
 $checkPvpEnabled = GUICtrlCreateCheckbox("PVP", $x, $y, $w, 25)
@@ -111,12 +117,6 @@ $w = 120
 $y += 30
 $checkTowerDissipationEnabled = GUICtrlCreateCheckbox("Tower Dissipation", $x, $y, $w, 25)
 $btnTowerGo = GUICtrlCreateButton("Go", $x + $w + 10, $y + 2, 40, 20)
-
-; Clean Red Dot
-$w = 120
-$y += 30
-$checkMainQuestEnabled = GUICtrlCreateCheckbox("Main Quest", $x, $y, $w, 25)
-$btnMainQuestGo = GUICtrlCreateButton("Go", $x + $w + 10, $y + 2, 40, 20)
 
 ; The Bot Status Screen
 $txtLog = _GUICtrlRichEdit_Create($mainView, "", $contentPaneX, $contentPaneY, $logViewWidth, $logViewHeight, BitOR($ES_MULTILINE, $ES_READONLY, $WS_VSCROLL, 8912))
@@ -196,6 +196,9 @@ GUICtrlSetOnEvent($btnMainQuestGo, "btnMainQuestDo")
 
 GUICtrlSetState($btnStart, $GUI_SHOW)
 GUICtrlSetState($btnStop, $GUI_HIDE)
+
+GUICtrlSetState($checkMainQuestEnabled, $GUI_DISABLE)
+GUICtrlSetState($btnMainQuestGo, $GUI_DISABLE)
 
 GUICtrlSetState($checkExpEnabled, $GUI_DISABLE)
 GUICtrlSetState($btnExpDungeonGo, $GUI_DISABLE)
