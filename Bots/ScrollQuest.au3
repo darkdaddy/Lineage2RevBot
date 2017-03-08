@@ -74,10 +74,7 @@ Func DoScrollQuest()
 
 		 UpdateWindowRect()
 
-		 If _IsChecked($checkScrollQuestManualAttackEnabled) = False Then
-
-			; Click any skip button!
-			ClickControlPos($POS_SKIP_BUTTON)
+		 If _IsChecked($checkCastSkillQuestEnabled) Then
 
 			; To Walk Fast. It's just for mine, SilverRanger... :)
 			ClickControlPos($POS_BATTLE_SKILL1_BUTTON, 2, 500)

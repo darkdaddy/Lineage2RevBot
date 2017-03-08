@@ -18,7 +18,7 @@ Func DoMainQuest()
 
    SetLog("MainQuest Start", $COLOR_RED)
 
-   Local Const $CheckDelay = 1000
+   Local Const $CheckDelay = 1500
 
    $loopCount = 1
 
@@ -63,6 +63,8 @@ Func DoMainQuest()
 		 SetLog("Waiting 10 sec...", $COLOR_PINK)
 		 If _Sleep(10000) Then ExitLoop
 
+		 CloseAdvertisingScreen()
+
 		 $completedQuest = True
 	  EndIf
 
@@ -82,10 +84,7 @@ Func DoMainQuest()
 		 ContinueLoop
 	  EndIf
 
-	  If _IsChecked($checkScrollQuestManualAttackEnabled) = False Then
-
-		 ; Click any skip button!
-		 ClickControlPos($POS_SKIP_BUTTON)
+	  If _IsChecked($checkCastSkillQuestEnabled) Then
 
 		 ; To Walk Fast. It's just for mine, SilverRanger... :)
 		 ClickControlPos($POS_BATTLE_SKILL1_BUTTON, 2, 500)

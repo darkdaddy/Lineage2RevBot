@@ -9,6 +9,8 @@ Global $setting_win_title = "녹스 안드로이드 앱플레이어"
 
 Global $setting_item_pos_questscroll = 2
 Global $setting_pvp_use_red_dia = True
+Global $setting_enabled_castskillquest = False
+
 Global $setting_delay_rate = 1.0
 Global $setting_difficulty_exp = 2
 Global $setting_difficulty_daily = 2
@@ -43,6 +45,8 @@ Func loadConfig()
    $setting_enabled_tower_dissipation = IniRead($config, $setting_common_group, "enabled_tower_dissipation", "False") == "True" ? True : False
    $setting_enabled_mainquest = IniRead($config, $setting_common_group, "enabled_mainquest", "False") == "True" ? True : False
 
+   $setting_enabled_castskillquest = IniRead($config, $setting_common_group, "enabled_cast_skill_quest", "False") == "True" ? True : False
+
 EndFunc	;==>loadConfig
 
 Func applyConfig()
@@ -63,6 +67,7 @@ Func applyConfig()
    GUICtrlSetState($checkExpEnabled, $setting_enabled_exp_dungeon ? $GUI_CHECKED : $GUI_UNCHECKED)
    GUICtrlSetState($checkTowerDissipationEnabled, $setting_enabled_tower_dissipation ? $GUI_CHECKED : $GUI_UNCHECKED)
    GUICtrlSetState($checkMainQuestEnabled, $setting_enabled_mainquest ? $GUI_CHECKED : $GUI_UNCHECKED)
+   GUICtrlSetState($checkCastSkillQuestEnabled, $setting_enabled_castskillquest ? $GUI_CHECKED : $GUI_UNCHECKED)
 
 EndFunc	;==>applyConfig
 
@@ -86,6 +91,7 @@ Func saveConfig()
    IniWrite($config, $setting_common_group, "enabled_mainquest", _IsChecked($checkMainQuestEnabled))
 
    IniWrite($config, $setting_common_group, "enabled_pvp_use_red_dia", _IsChecked($checkPvpUseRedDiaEnabled))
+   IniWrite($config, $setting_common_group, "enabled_cast_skill_quest", _IsChecked($checkCastSkillQuestEnabled))
 
 EndFunc	;==>saveConfig
 
