@@ -65,8 +65,7 @@ Func DoAdenaDungeon()
 	  SetLog("Waiting seconds..", $COLOR_DARKGREY)
 	  If _Sleep(3000) Then Return False
 
-	  SetLog("Auto Attck Button Click", $COLOR_DARKGREY)
-	  ClickControlPos($POS_AUTO_BATTLE_BUTTON, 1, 200)
+	  ClickAutoAttackButton()
 
 	  If _Sleep(3000) Then Return False
 	  While $RunState

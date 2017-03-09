@@ -396,6 +396,34 @@ Func GoBackToMain()
    ClickControlPos("50:50", 3, 100 )
 EndFunc
 
+Func ClickAutoAttackButton()
+
+#cs ----------------------------------------------------------------------------
+   If CheckForPixel($CHECK_SCREEN_AUTO_ATTCK_ACTIVATED) = False Then
+	  SetLog("Auto Attck Button Click #1", $COLOR_DARKGREY)
+
+	  ClickControlPos($POS_AUTO_BATTLE_BUTTON, 1, 200)
+   Else
+#ce ----------------------------------------------------------------------------
+	  SetLog("Checking Auto Attack..", $COLOR_DARKGREY)
+	  For $i = 0 To 4
+		 If _Sleep(500) Then Return
+		 ; Search 'blue' circle for auto attack
+		 $pos = SearchPixel( "64.8:90.3-70.3:99 | 0x2273A0 | 9" )
+		 If IsArray($pos) = False Then
+			$pos = SearchPixel( "64.8:90.3-70.3:99 | 0x2273A0 | 9" )	; TODO
+		 EndIf
+		 If IsArray($pos) = False Then
+			SetLog("Auto Attck Button Click #2", $COLOR_DARKGREY)
+			ClickControlPos($POS_AUTO_BATTLE_BUTTON, 1, 200)
+			Return
+		 EndIf
+	  Next
+#cs ----------------------------------------------------------------------------
+   EndIf
+#ce ----------------------------------------------------------------------------
+EndFunc
+
 Func MoveTopRoundTravel($checkActivated = True, $duration = 1200)
 
    If $checkActivated = True Then

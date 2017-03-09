@@ -72,11 +72,7 @@ Func DoDailyDungeon()
 
 		 If _Sleep(1500) Then Return False
 
-		 If CheckForPixel($CHECK_SCREEN_AUTO_ATTCK_ACTIVATED) = False Then
-			SetLog("Auto Attck Button Click", $COLOR_DARKGREY)
-
-			ClickControlPos($POS_AUTO_BATTLE_BUTTON, 1, 200)
-		 EndIf
+		 ClickAutoAttackButton()
 
 		 If ActionAttck($CHECK_SCREEN_ADENA_END, 3, False) = False Then
 
