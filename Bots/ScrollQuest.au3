@@ -70,6 +70,8 @@ Func DoScrollQuest()
 		 SetLog("Go!", $COLOR_DARKGREY)
 	  EndIf
 
+	  ClickControlPos($POS_BATTLE_SKILL1_BUTTON, 2, 500)
+
 	  While $RunState
 
 		 UpdateWindowRect()

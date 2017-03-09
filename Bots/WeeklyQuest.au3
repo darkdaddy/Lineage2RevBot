@@ -47,25 +47,40 @@ Func DoWeeklyQuest()
 	  ClickControlPos("10.6:39.8");
 
 	  ; Check Quest Completion Button
-	  If _Sleep(1000) Then ExitLoop
-	  If CheckWeeklyQuestCompletionScreen() Then
+	  SetLog("Waiting 3sec..", $COLOR_DARKGREY)
+	  Local $questCompleted = False
+	  Local $noQuestCount = False
+ 	  For $i = 1 To 3
 		 If _Sleep(1000) Then ExitLoop
-		 $loopCount = $loopCount + 1
+		 If CheckWeeklyQuestCompletionScreen() Then
+			If _Sleep(1000) Then ExitLoop
+			$loopCount = $loopCount + 1
+			$questCompleted = True
+			ExitLoop
+		 EndIf
+
+		 ; Check Quest Not Available
+		 If CheckForPixel("65.3:68.3, 78.3:68.3 | 0x17202F, 0x151A25 | 6") Then
+			SetLog("No Weekly Quest", $COLOR_RED)
+			ClickControlPos($POS_EXIT_RIGHT_BUTTON, 1, 1000)
+			$noQuestCount = True
+			ExitLoop
+		 EndIf
+	  Next
+
+	  If $questCompleted Then
 		 ContinueLoop
 	  EndIf
 
-	  ; Check Quest Not Available
-	  If _Sleep(1000) Then ExitLoop
-	  If CheckForPixel("65.3:68.3, 78.3:68.3 | 0x17202F, 0x151A25 | 6") Then
-		 SetLog("No Weekly Quest", $COLOR_RED)
-		 ClickControlPos($POS_EXIT_RIGHT_BUTTON, 1, 1000)
+	  If $noQuestCount Then
 		 ExitLoop
 	  EndIf
 
-	  SetLog("Start Quest", $COLOR_DARKGREY)
 	  If _Sleep(1000) Then ExitLoop
+	  SetLog("Start Quest", $COLOR_DARKGREY)
 	  ClickControlPos("72.1:68.6");
 
+	  If _Sleep(1500) Then ExitLoop
 	  If CheckAlertPortalScreen() Then
 		 SetLog("Go Walk!", $COLOR_DARKGREY)
 		 ClickControlPos($POS_SCROLL_QUEST_ALERT_WALK_BUTTON, 1, 1000)
@@ -82,6 +97,8 @@ Func DoWeeklyQuest()
 			SetLog("Go!", $COLOR_DARKGREY)
 		 EndIf
 	  EndIf
+
+	  ClickControlPos($POS_BATTLE_SKILL1_BUTTON, 2, 500)
 
 	  ; Waiting to complete one weekly quest
 	  While $RunState

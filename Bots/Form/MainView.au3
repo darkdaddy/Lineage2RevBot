@@ -7,9 +7,9 @@ Local $contentPaneY = $tabY + 30
 
 Local $gap = 10
 Local $generalRightHeight = 240
-Local $generalBottomHeight = 70
+Local $generalBottomHeight = 120
 Local $logViewWidth = 260
-Local $logViewHeight = 300
+Local $logViewHeight = 270
 Local $frameWidth = $contentPaneX + $logViewWidth + $gap + $generalRightHeight + $tabX
 Local $frameHeight = $contentPaneY + $logViewHeight + $gap + $generalBottomHeight + $tabY
 
@@ -127,9 +127,10 @@ Local $btnWidth = 90
 $btnStart = GUICtrlCreateButton("Start Bot", $x, $generalBottomY, $btnWidth, 50)
 $btnStop = GUICtrlCreateButton("Stop Bot", $x, $generalBottomY, $btnWidth, 50)
 
-$x += $btnWidth
-$x += $gap
-; TODO : add button
+$y = $frameHeight - 70
+$guideKeyLabel = GUICtrlCreateLabel("Please press Ctrl + 1 in Nox." & @CRLF & "And then you must set W,A,D,S key " & @CRLF & "onto the joystick.", $x, $y)
+GUICtrlSetColor($guideKeyLabel, 0xFF0000)
+; TODO : add butto=n
 
 ;-----------------------------------------------------------
 ; Tab : Option

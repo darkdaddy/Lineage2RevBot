@@ -2,12 +2,12 @@
 
 #pragma compile(FileDescription, Raven Bot)
 #pragma compile(ProductName, Raven Bot)
-#pragma compile(ProductVersion, 0.7)
-#pragma compile(FileVersion, 0.7)
+#pragma compile(ProductVersion, 0.8)
+#pragma compile(FileVersion, 0.8)
 #pragma compile(LegalCopyright, DarkJaden)
 
 $sBotName = "Lineage 2 Revolution Bot"
-$sBotVersion = "0.7"
+$sBotVersion = "0.8"
 $sBotTitle = "AutoIt " & $sBotName & " v" & $sBotVersion
 
 If _Singleton($sBotTitle, 1) = 0 Then
@@ -361,6 +361,7 @@ Func CheckSkipScreen()
 EndFunc
 
 Func CheckAlertPortalScreen()
+   _log("CheckAlertPortalScreen called");
    return CheckForPixel($CHECK_SCREEN_PORTALALERT)
 EndFunc
 

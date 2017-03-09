@@ -12,6 +12,22 @@ Func StartMainQuest()
    ; Click Main Quest board
    ClickControlPos("4.8:25.5", 1, 300);
    ClickControlPos("9.7:35", 1, 300);
+
+   SetLog("Waiting 2 sec...", $COLOR_PINK)
+   For $i = 0 To 1
+	  If _Sleep(1000) Then ExitLoop
+	  If CheckForPixel("1.2:1.8,1.2:8.9 | 0x08D6746 | 6") Then
+		 SetLog("Limit Max Level", $COLOR_RED)
+		 ClickControlPos($POS_EXIT_RIGHT_BUTTON, 1, 1000)
+		 Return False
+	  EndIf
+   Next
+
+   Return True
+EndFunc
+
+Func EndMainQuest()
+   SetLog("MainQuest End", $COLOR_PURPLE)
 EndFunc
 
 Func DoMainQuest()
@@ -22,7 +38,10 @@ Func DoMainQuest()
 
    $loopCount = 1
 
-   StartMainQuest()
+   If StartMainQuest() = False Then
+	  EndMainQuest()
+	  Return
+   EndIf
 
    SetLog("LoopCount : " & $loopCount, $COLOR_GREEN)
 
@@ -70,10 +89,17 @@ Func DoMainQuest()
 
 	  If $completedQuest Then
 		 If _Sleep(2000) Then ExitLoop
-		 StartMainQuest()
+
+		 If StartMainQuest() = False Then
+			; No more to do main quest!!
+			EndMainQuest()
+			Return
+		 EndIf
 
 		 $loopCount = $loopCount + 1
 		 SetLog("LoopCount : " & $loopCount, $COLOR_GREEN)
+
+		 ClickControlPos($POS_BATTLE_SKILL1_BUTTON, 2, 500)
 	  EndIf
 
 	  If CheckAlertPortalScreen() Then
@@ -98,5 +124,5 @@ Func DoMainQuest()
 	   If _Sleep($CheckDelay) Then ExitLoop
    WEnd
 
-   SetLog("MainQuest End", $COLOR_PURPLE)
+   EndMainQuest()
 EndFunc
