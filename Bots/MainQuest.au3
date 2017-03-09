@@ -16,7 +16,7 @@ Func StartMainQuest()
    SetLog("Waiting 2 sec...", $COLOR_PINK)
    For $i = 0 To 1
 	  If _Sleep(1000) Then ExitLoop
-	  If CheckForPixel("1.2:1.8,1.2:8.9 | 0x08D6746 | 6") Then
+	  If CheckForPixel("1.2:1.8,1.2:8.9 | 0x08D6746, 0x46678D | 6") Then
 		 SetLog("Limit Max Level", $COLOR_RED)
 		 ClickControlPos($POS_EXIT_RIGHT_BUTTON, 1, 1000)
 		 Return False
