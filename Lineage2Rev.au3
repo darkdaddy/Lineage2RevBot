@@ -278,10 +278,10 @@ Func SearchPixel($regionInfo, $PixelTolerance = 12)
 	  Local $color = StringStripWS($colorArr[$c], $STR_STRIPLEADING + $STR_STRIPTRAILING)
 	  $aCoord = PixelSearch($x1, $y1, $x2, $y2, $color, $PixelTolerance, 1, $HWnD)
 	  If Not @error Then
-		 _log("SearchPixel OK: " & $x1 & " x " & $y1 & " => OK " & ($aCoord[0]) & " x " & ($aCoord[1]) & ", " & $color )
+		 _log("SearchPixel OK: " & ($x1 - $WinX) & " x " & ($y1 - $WinY) & " => OK " & ($aCoord[0]) & " x " & ($aCoord[1]) & ", " & $color )
 		 $lastRet = $aCoord
 	  Else
-		 _log("SearchPixel Failed: " & $x1 & " x " & $y1 & " => " & $color )
+		 _log("SearchPixel Failed: " & ($x1 - $WinX) & " x " & ($y1 - $WinY) & " => " & $color )
 		 Return False
 	  EndIf
    Next

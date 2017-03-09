@@ -8,6 +8,7 @@
 
 #ce ----------------------------------------------------------------------------
 
+
 Func CheckWeeklyQuestCompletionScreen()
 
    Local Const $QuestCompleteButton = "65.9:69.7"
@@ -88,10 +89,10 @@ Func DoWeeklyQuest()
 		 UpdateWindowRect()
 
 		 ; Finding "Completion" Circle on Quest Board (in Left Screen)
-		 $pos = SearchPixel( "15.4:30-21:59.4 | 0xC1CCD9,0x6794C8 | 6" )
+		 $pos = SearchPixel( "15.4:41.6-21:59.4 | 0xC1CCD9,0x6794C8 | 6" )
 
 		 If IsArray($pos) = False Then
-			$pos = SearchPixel( "15.4:30-21:59.4 | 0xDDC4AF,0xCD945D | 6" )
+			$pos = SearchPixel( "15.4:41.6-21:59.4 | 0xDDC4AF,0xCD945D | 10" )
 		 EndIf
 
 		 If IsArray($pos) Then
@@ -117,6 +118,7 @@ Func DoWeeklyQuest()
 				  ClickControlPos($POS_SCROLL_QUEST_ALERT_WALK_BUTTON, 1, 1000)
 			   Else
 				  ; Click to start quest again...
+				  SetLog("Go Again!", $COLOR_GREEN)
 				  ClickPos($itemPos, 500, 1)
 			   EndIf
 			EndIf
