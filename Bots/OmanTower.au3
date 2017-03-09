@@ -8,9 +8,11 @@ Func DoOmanTower()
 
    SetLog("Open Menu", $COLOR_DARKGREY)
    ClickControlPos($POS_TOPMENU_MENU)
+   If _Sleep(500) Then Return False
 
    SetLog("Open Dungeon", $COLOR_DARKGREY)
    ClickControlPos($POS_MENU_DUNGEON)
+   If _Sleep(500) Then Return False
 
    SetLog("Scrolling pages", $COLOR_DARKGREY)
    If _Sleep(800) Then Return False
