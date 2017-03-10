@@ -409,9 +409,9 @@ Func ClickAutoAttackButton()
 	  For $i = 0 To 4
 		 If _Sleep(500) Then Return
 		 ; Search 'blue' circle for auto attack
-		 $pos = SearchPixel( "64.8:90.3-70.3:99 | 0x2273A0 | 9" )
+		 $pos = SearchPixel( "64.8:90.3-70.3:99 | 0xBE841E | 9" )	; yellow
 		 If IsArray($pos) = False Then
-			$pos = SearchPixel( "64.8:90.3-70.3:99 | 0x2273A0 | 9" )	; TODO
+			$pos = SearchPixel( "64.8:90.3-70.3:99 | 0x2273A0 | 9" )	; blue
 		 EndIf
 		 If IsArray($pos) = False Then
 			SetLog("Auto Attck Button Click #2", $COLOR_DARKGREY)
