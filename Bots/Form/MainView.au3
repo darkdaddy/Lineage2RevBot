@@ -128,7 +128,7 @@ $btnStart = GUICtrlCreateButton("Start Bot", $x, $generalBottomY, $btnWidth, 50)
 $btnStop = GUICtrlCreateButton("Stop Bot", $x, $generalBottomY, $btnWidth, 50)
 
 $y = $frameHeight - 70
-$guideKeyLabel = GUICtrlCreateLabel("Please press Ctrl + 1 in Nox." & @CRLF & "And then you must set W,A,D,S key " & @CRLF & "onto the joystick.", $x, $y)
+$guideKeyLabel = GUICtrlCreateLabel("Please press Ctrl + 1 in Nox." & @CRLF & "And then you must set W,A,D,S key " & @CRLF & "onto the joystick for Dungeons.", $x, $y)
 GUICtrlSetColor($guideKeyLabel, 0xFF0000)
 ; TODO : add butto=n
 
