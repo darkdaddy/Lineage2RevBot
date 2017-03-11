@@ -406,7 +406,7 @@ Func ClickAutoAttackButton()
    Else
 #ce ----------------------------------------------------------------------------
 	  SetLog("Checking Auto Attack..", $COLOR_DARKGREY)
-	  For $i = 0 To 4
+	  For $i = 0 To 2
 		 If _Sleep(500) Then Return
 		 ; Search 'blue' circle for auto attack
 		 $pos = SearchPixel( "64.8:90.3-70.3:99 | 0xBE841E | 9" )	; yellow
