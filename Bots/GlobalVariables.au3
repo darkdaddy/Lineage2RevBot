@@ -24,8 +24,8 @@
 
 Global Const $64Bit = StringInStr(@OSArch, "64") > 0
 
-Global Const $NoxTitleBarHeight = 36
-Global Const $ThickFrameSize = 2
+Global $NoxTitleBarHeight = 36
+Global $ThickFrameSize = 2
 Global Const $MinWinSize = 200
 Global $WinRect = [0, 0, 0, 0]
 Global $WindowClass = "[Qt5QWindowIcon]"

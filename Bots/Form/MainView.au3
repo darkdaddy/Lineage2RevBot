@@ -144,8 +144,15 @@ $y = $contentPaneY
 
 ; Nox Title
 $Label_1 = GUICtrlCreateLabel("Nox Title", $x, $y + 5, 60, 20)
-$x += 60
+$x += 80
 $inputNoxTitle = GUICtrlCreateInput("", $x, $y, 200, 20)
+
+; Nox Title
+$x = $contentPaneX
+$y += 30
+$Label_2 = GUICtrlCreateLabel("Thick Frame", $x, $y + 5, 100, 20)
+$x += 80
+$inputThickFraemSize = GUICtrlCreateInput("", $x, $y, 200, 20)
 
 ; PVP Red Dia Use
 $x = $contentPaneX
@@ -231,7 +238,10 @@ Func InitBot()
    If findWindow() Then
 	  WinActivate($HWnD)
 	  IsNoxActivated()
-	  SetLog("Nox : " & $WinRect[0] & "," & $WinRect[1] & " " & $WinRect[2] & "x" & $WinRect[3] , $COLOR_ORANGE)
+
+	   _log("NoxTitleBarHeight : " & $NoxTitleBarHeight )
+	   _log("ThickFrameSize : " & $ThickFrameSize )
+	  SetLog("Nox : " & $WinRect[0] & "," & $WinRect[1] & " " & $WinRect[2] & "x" & $WinRect[3] & "(" & $setting_thick_frame_size & ")", $COLOR_ORANGE)
    Else
 	  SetLog("Nox Not Found", $COLOR_RED)
 	  btnStop()

@@ -6,6 +6,7 @@
 Local $setting_common_group = "Default"
 
 Global $setting_win_title = "녹스 안드로이드 앱플레이어"
+Global $setting_thick_frame_size = "36:2"
 
 Global $setting_item_pos_questscroll = 2
 Global $setting_pvp_use_red_dia = True
@@ -28,6 +29,7 @@ Global $setting_enabled_mainquest = False
 Func loadConfig()
 
    $setting_win_title = IniRead($config, $setting_common_group, "win_title", $setting_win_title)
+   $setting_thick_frame_size = IniRead($config, $setting_common_group, "thick_frame_size", $setting_thick_frame_size)
    $setting_item_pos_questscroll = Int(IniRead($config, $setting_common_group, "item_pos_questscroll", "2"))
    $setting_difficulty_exp = Int(IniRead($config, $setting_common_group, "difficulty_exp", "2"))
    $setting_difficulty_daily = Int(IniRead($config, $setting_common_group, "difficulty_daily", "2"))
@@ -52,6 +54,7 @@ EndFunc	;==>loadConfig
 Func applyConfig()
 
    GUICtrlSetData($inputNoxTitle, $setting_win_title)
+   GUICtrlSetData($inputThickFraemSize, $setting_thick_frame_size)
    _GUICtrlComboBox_SetCurSel($comboScrollPos, Int($setting_item_pos_questscroll) - 1)
    _GUICtrlComboBox_SetCurSel($comboExpDifficulty, Int($setting_difficulty_exp))
    _GUICtrlComboBox_SetCurSel($comboAdenaDifficulty, Int($setting_difficulty_adena))
@@ -69,11 +72,16 @@ Func applyConfig()
    GUICtrlSetState($checkMainQuestEnabled, $setting_enabled_mainquest ? $GUI_CHECKED : $GUI_UNCHECKED)
    GUICtrlSetState($checkCastSkillQuestEnabled, $setting_enabled_castskillquest ? $GUI_CHECKED : $GUI_UNCHECKED)
 
+   Local $arr = StringSplit($setting_thick_frame_size, ":")
+   $NoxTitleBarHeight = Number($arr[1])
+   $ThickFrameSize = Number($arr[2])
+
 EndFunc	;==>applyConfig
 
 Func saveConfig()
 
    IniWrite($config, $setting_common_group, "win_title", GUICtrlRead($inputNoxTitle))
+   IniWrite($config, $setting_common_group, "thick_frame_size", GUICtrlRead($inputThickFraemSize))
    IniWrite($config, $setting_common_group, "item_pos_questscroll", _GUICtrlComboBox_GetCurSel($comboScrollPos) + 1)
    IniWrite($config, $setting_common_group, "difficulty_exp", _GUICtrlComboBox_GetCurSel($comboExpDifficulty))
    IniWrite($config, $setting_common_group, "difficulty_adena", _GUICtrlComboBox_GetCurSel($comboAdenaDifficulty))

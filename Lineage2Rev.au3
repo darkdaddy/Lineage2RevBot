@@ -10,11 +10,6 @@ $sBotName = "Lineage 2 Revolution Bot"
 $sBotVersion = "0.8"
 $sBotTitle = "AutoIt " & $sBotName & " v" & $sBotVersion
 
-If _Singleton($sBotTitle, 1) = 0 Then
-   MsgBox(0, "", "Bot is already running.")
-   Exit
-EndIf
-
 #include <Bots/Util/SetLog.au3>
 #include <Bots/Util/Time.au3>
 #include <Bots/Util/CreateLogFile.au3>
