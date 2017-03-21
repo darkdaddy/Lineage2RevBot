@@ -1,3 +1,4 @@
+
 Func ClickPos($pos, $delay = 500, $times = 1)
    If _Sleep($delay) Then Return
    Click($pos[0], $pos[1], $times, 200)
@@ -22,7 +23,7 @@ EndFunc   ;==>ClickP
 
 
 Func ClickButtonImage($btnPath, $check = True)
-   Local $bound = [0, 0, $DEFAULT_WIDTH, $DEFAULT_HEIGHT]
+   Local $bound = [0, 0, $WinRect[2], $WinRect[3]]
    Return ClickButtonImageArea($btnPath, $bound, $check)
 EndFunc	;==>ClickButtonImage
 

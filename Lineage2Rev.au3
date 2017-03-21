@@ -15,6 +15,9 @@ $sBotTitle = "AutoIt " & $sBotName & " v" & $sBotVersion
 #include <Bots/Util/CreateLogFile.au3>
 #include <Bots/Util/_Sleep.au3>
 #include <Bots/Util/Click.au3>
+#include <Bots/Util/SaveImageToFile.au3>
+#include <Bots/Util/Pixels/_CaptureRegion.au3>
+#include <Bots/Util/Image Search/ImageSearch.au3>
 #include <ScreenCapture.au3>
 #include <Bots/GlobalVariables.au3>
 #include <Bots/Config.au3>
