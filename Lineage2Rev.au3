@@ -2,12 +2,12 @@
 
 #pragma compile(FileDescription, Raven Bot)
 #pragma compile(ProductName, Raven Bot)
-#pragma compile(ProductVersion, 0.8)
-#pragma compile(FileVersion, 0.8)
+#pragma compile(ProductVersion, 0.10)
+#pragma compile(FileVersion, 0.10)
 #pragma compile(LegalCopyright, DarkJaden)
 
 $sBotName = "Lineage 2 Revolution Bot"
-$sBotVersion = "0.8"
+$sBotVersion = "0.10"
 $sBotTitle = "AutoIt " & $sBotName & " v" & $sBotVersion
 
 #include <Bots/Util/SetLog.au3>
@@ -188,6 +188,7 @@ Func UpdateWindowRect()
 		 $r[3] = $r[3] - $NoxTitleBarHeight - $ThickFrameSize
 
 		 $WinRect = $r
+		 _log("Nox Rect : " & $WinRect[0] & "," & $WinRect[1] & " " & $WinRect[2] & "x" & $WinRect[3])
 	  EndIf
    EndIf
 EndFunc

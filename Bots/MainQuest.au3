@@ -10,8 +10,8 @@
 
 Func StartMainQuest()
    ; Click Main Quest board
-   ClickControlPos("4.8:25.5", 1, 300);
-   ClickControlPos("9.7:35", 1, 300);
+   ClickControlPos("4.8:25.5", 1, 1000);
+   ClickControlPos("9.7:35", 1, 1000);
 
    SetLog("Waiting 2 sec...", $COLOR_PINK)
    For $i = 0 To 1
@@ -48,6 +48,9 @@ Func DoMainQuest()
    While $RunState
 #cs ----------------------------------------------------------------------------
 #ce ----------------------------------------------------------------------------
+	  UpdateWindowRect()
+
+	  CloseAdvertisingScreen()
 
 	  If CheckForPixel($CHECK_SCREEN_SKIP) = True Then
 		 ; Click any skip button!
@@ -66,10 +69,39 @@ Func DoMainQuest()
 	  Else
 		 ; Checking Quest Start Button
 		 If CheckForPixel($CHECK_SCREEN_SCROLLQUEST_START) Then
+			If _Sleep(1200) Then ExitLoop
 			SetLog("Start Quest", $COLOR_DARKGREY)
 			ClickControlPos($POS_SCROLL_QUEST_START_BUTTON, 1, 1000)
 
 			If _Sleep(1000) Then ExitLoop
+			ContinueLoop
+		 EndIf
+	  EndIf
+
+	  ; Checking Tutorial
+	  If CheckForPixel("13.7:3.5 | 0x0341316 | 6") Then
+		 If _Sleep(1000) Then ExitLoop
+
+		 ; Search 'white font'
+		 $pos = SearchPixel( "86.3:5.2-96.2:8.7 | 0xE7E6E4 | 9" )	; white
+		 If IsArray($pos) = False Then
+			$pos = SearchPixel( "86.3:5.2-96.2:8.7 | 0xD4D2CD | 9" )	; white
+		 EndIf
+		 If IsArray($pos) Then
+			SetLog("Tutorial Detected", $COLOR_DARKGREY)
+			ClickControlPos("91.2:6.9", 1, 1000)
+
+			If _Sleep(1000) Then ExitLoop
+			ClickControlPos("58.8:64.6", 1, 1000)
+
+			SetLog("Waiting 3 sec...", $COLOR_PINK)
+			If _Sleep(3000) Then ExitLoop
+
+			If StartMainQuest() = False Then
+			   ; No more to do main quest!!
+			   EndMainQuest()
+			   Return
+			EndIf
 			ContinueLoop
 		 EndIf
 	  EndIf
