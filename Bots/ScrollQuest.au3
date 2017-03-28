@@ -70,17 +70,9 @@ Func DoScrollQuest()
 		 SetLog("Go!", $COLOR_DARKGREY)
 	  EndIf
 
-	  ClickControlPos($POS_BATTLE_SKILL1_BUTTON, 2, 500)
-
 	  While $RunState
 
 		 UpdateWindowRect()
-
-		 If _IsChecked($checkCastSkillQuestEnabled) Then
-
-			; To Walk Fast. It's just for mine, SilverRanger... :)
-			ClickControlPos($POS_BATTLE_SKILL1_BUTTON, 2, 500)
-		 EndIf
 
 		 If CheckForPixel($CHECK_SCREEN_SKIP) = True Then
 			; Click any skip button!
