@@ -106,7 +106,7 @@ Func DoWeeklyQuest()
 		 UpdateWindowRect()
 
 		 ; Finding "Completion" Circle on Quest Board (in Left Screen)
-		 $pos = SearchPixel( "15.4:41.6-21:59.4 | 0xC1CCD9,0x6794C8 | 6" )
+		 $pos = SearchPixel( "65.9:69.7 | 0xC1CCD9,0x6794C8 | 6" )
 
 		 If IsArray($pos) = False Then
 			$pos = SearchPixel( "15.4:41.6-21:59.4 | 0xDDC4AF,0xCD945D | 10" )
